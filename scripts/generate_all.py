@@ -29,8 +29,8 @@ def constellation():
 def missions():
  projects=CFG['projects']; modules=''
  for i,p in enumerate(projects):
-  x,y=[(215,230),(450,130),(685,230)][i]; r=[35,47,35][i]; modules+=f'<a href="{e(p["url"])}"><g><circle cx="{x}" cy="{y}" r="{r}" fill="#071c2e" stroke="#72ecff" stroke-width="1.5"/><circle cx="{x}" cy="{y}" r="{r*.55}" fill="#5deaff" opacity=".2" filter="url(#bloom)"/>{orbit(x,y,r+18,int((r+18)*.48),17+i*7,"9 7")}{t(x,y+5,p["name"].upper(),10,"#e9feff","middle")}{t(x,y+r+30,p["technology"],8,"#90b5c4","middle")}</g></a>'
- return frame('Project constellation',900,390,f'{stars(900,390,38)}{t(48,54,"PROJECT CONSTELLATION // PUBLIC SYSTEMS",12,"#7cefff",sp=3)}<path d="M110 322Q450 52 790 322" fill="none" stroke="url(#beam)" stroke-opacity=".35" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" values="0;-68" dur="11s" repeatCount="indefinite"/></path>{modules}{t(450,360,"OPERO · LIFEOS AI · RAKVA",11,"#dffaff","middle",2)}')
+  x,y=[(180,230),(360,130),(540,130),(720,230)][i]; r=[32,40,40,32][i]; modules+=f'<a href="{e(p["repository"])}"><g><circle cx="{x}" cy="{y}" r="{r}" fill="#071c2e" stroke="#72ecff" stroke-width="1.5"/><circle cx="{x}" cy="{y}" r="{r*.55}" fill="#5deaff" opacity=".2" filter="url(#bloom)"/>{orbit(x,y,r+18,int((r+18)*.48),17+i*7,"9 7")}{t(x,y+5,p["name"].upper(),9,"#e9feff","middle")}</g></a>'
+ return frame('Project constellation',900,390,f'{stars(900,390,38)}{t(48,54,"PROJECT CONSTELLATION // PUBLIC SYSTEMS",12,"#7cefff",sp=3)}<path d="M90 322Q450 52 810 322" fill="none" stroke="url(#beam)" stroke-opacity=".35" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" values="0;-68" dur="11s" repeatCount="indefinite"/></path>{modules}{t(450,360,"THE-OPERO · VAULTIQ AI · LIFEOS AI · PRISM",11,"#dffaff","middle",2)}')
 def opero():
  labels=['SPEAK','UNDERSTAND','INVESTIGATE','DECIDE','ACT','VERIFY','REPORT']; nodes=''.join(f'<g><circle cx="{450+int(172*math.cos(-math.pi/2+i*2*math.pi/7))}" cy="{238+int(104*math.sin(-math.pi/2+i*2*math.pi/7))}" r="18" fill="#061a2c" stroke="#67eaff"/>{t(450+int(172*math.cos(-math.pi/2+i*2*math.pi/7)),243+int(104*math.sin(-math.pi/2+i*2*math.pi/7)),n,8,"#dffaff","middle")}</g>' for i,n in enumerate(labels))
  return frame('OPERO operations core',900,475,f'{stars(900,475,35)}{t(48,54,"AUTONOMOUS OPERATOR CORE // OPERO",12,"#7cefff",sp=2)}{orbit(450,238,172,104,18,"18 9")}{orbit(450,238,218,142,33,"4 13")}{nodes}{core(450,238,53)}{t(450,234,"OPERO",16,"#06131d","middle",2)}{t(450,258,"OPS CORE",9,"#06131d","middle")}{t(450,426,"OPERATIONS FOUNDATION: ORDERS · INCIDENTS · INVENTORY · TASKS · AUDIT ACTIVITY",10,"#91b0be","middle")}')
@@ -57,12 +57,12 @@ def github_data(token):
  try:
   h={'Accept':'application/vnd.github+json','User-Agent':'krishna-sai-profile'}
   if token:h['Authorization']=f'Bearer {token}'
-  q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}',headers=h)
+  q=urllib.request.Request(f'https://api.github.com/users/{CFG["identity"]["username"]}',headers=h)
   with urllib.request.urlopen(q,timeout=20) as r:data=json.load(r)
-  q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}/repos?per_page=100&sort=updated',headers=h)
+  q=urllib.request.Request(f'https://api.github.com/users/{CFG["identity"]["username"]}/repos?per_page=100&sort=updated',headers=h)
   with urllib.request.urlopen(q,timeout=20) as r:data['repos']=json.load(r)
   if not token:return data
-  payload={'query':'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}','variables':{'login':CFG['username']}}; q=urllib.request.Request('https://api.github.com/graphql',data=json.dumps(payload).encode(),headers={**h,'Content-Type':'application/json'})
+  payload={'query':'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}','variables':{'login':CFG['identity']['username']}}; q=urllib.request.Request('https://api.github.com/graphql',data=json.dumps(payload).encode(),headers={**h,'Content-Type':'application/json'})
   with urllib.request.urlopen(q,timeout=20) as r:data['contributions']=json.load(r).get('data',{}).get('user',{}).get('contributionsCollection',{}).get('contributionCalendar',{}).get('weeks',[])
   return data
  except Exception as err: print(f'warning: GitHub data unavailable: {err}',file=sys.stderr);return None

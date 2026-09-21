@@ -24,8 +24,8 @@ for word in forbidden:
     if word in public_text.lower(): errors.append(f'Forbidden public placeholder text: {word}')
 config = json.loads((ROOT / "config/profile.json").read_text(encoding="utf-8"))
 for project in config.get("projects", []):
-    if not project.get("url", "").startswith("https://github.com/channallikrishnasai/"):
-        errors.append(f'Invalid project URL: {project.get("url", "")})')
+    if not project.get("repository", "").startswith("https://github.com/channallikrishnasai/"):
+        errors.append(f'Invalid project URL: {project.get("repository", "")}')
 for candidate in ROOT.rglob('*'):
     if candidate.is_file() and '.git' not in candidate.parts and 'scripts' not in candidate.relative_to(ROOT).parts and candidate.suffix not in {'.svg', '.pyc'}:
         if re.search(r'(ghp_|github_pat_|sk-[A-Za-z0-9]{16,})', candidate.read_text(encoding='utf-8', errors='ignore')):
