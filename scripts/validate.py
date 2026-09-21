@@ -9,8 +9,11 @@ for path in (ROOT/'assets').rglob('*.svg'):
     try: ET.parse(path)
     except ET.ParseError as exc: errors.append(f'{path}: {exc}')
 readme=(ROOT/'README.md').read_text(encoding='utf-8')
-for ref in re.findall(r'\((assets/[^)]+\.svg)\)',readme):
+for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|png|gif))',readme):
     if not (ROOT/ref).is_file(): errors.append(f'Missing README asset: {ref}')
+    elif (ROOT/ref).stat().st_size == 0: errors.append(f'Empty README asset: {ref}')
+for path, limit in ((ROOT/'assets/generated/nexus-hero.gif', 5_000_000), (ROOT/'assets/projects/opero-core.png', 4_000_000), (ROOT/'assets/terminal/nexus-terminal.gif', 2_000_000)):
+    if path.is_file() and path.stat().st_size > limit: errors.append(f'Asset exceeds budget: {path.relative_to(ROOT)}')
 if not (ROOT/'.github/workflows/update-profile.yml').is_file(): errors.append('Missing update workflow')
 expected = {"hero.svg", "boot-sequence.svg", "identity.svg", "neural-constellation.svg", "mission-control.svg", "opero-core.svg", "terminal.svg", "engineering-philosophy.svg", "github-activity.svg", "contribution-matrix.svg", "connection.svg"}
 actual = {path.name for path in (ROOT / "assets/nexus").glob("*.svg")} if (ROOT / "assets/nexus").is_dir() else set()

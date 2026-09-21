@@ -69,5 +69,7 @@ def github_data(token):
 def main():
  p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));a=p.parse_args();d=github_data(a.token); assets={'hero.svg':hero(),'boot-sequence.svg':boot(),'identity.svg':identity(),'neural-constellation.svg':constellation(),'mission-control.svg':missions(),'opero-core.svg':opero(),'terminal.svg':terminal(),'engineering-philosophy.svg':philosophy(),'github-activity.svg':activity(d),'contribution-matrix.svg':contributions(d),'connection.svg':connection()}
  for n,v in assets.items(): (NEXUS/n).parent.mkdir(parents=True,exist_ok=True);(NEXUS/n).write_text(v,encoding='utf-8')
+ from generate_raster import generate as generate_raster
+ generate_raster()
  print(f'Generated {len(assets)} NEXUS SVG assets.')
 if __name__=='__main__':main()

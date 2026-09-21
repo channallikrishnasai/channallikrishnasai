@@ -1,45 +1,79 @@
 <p align="center">
-  <img src="assets/nexus/hero.svg" width="100%" alt="Krishna Sai Channalli: AI Systems and Agent Engineering. Building systems that see, speak, think, and act." />
+  <img src="assets/generated/nexus-hero.gif" width="100%" alt="Cinematic animation of a deep-space NEXUS energy reactor." />
+</p>
+
+<div align="center">
+
+# Krishna Sai Channalli
+
+**AI Systems · Agent Engineering · Automation**
+
+Building intelligent systems that see, speak, think, and act.
+
+</div>
+
+<br />
+
+### Now building
+
+**[OPERO](https://github.com/channallikrishnasai/OPERO)** — an operations dashboard foundation for orders, incidents, inventory, tasks, and audit activity.
+
+<p align="center">
+  <img src="assets/projects/opero-core.png" width="900" alt="Cinematic 3D render of the OPERO operations core with five orbital operational systems." />
+</p>
+
+<div align="center">
+
+[Explore OPERO →](https://github.com/channallikrishnasai/OPERO)
+
+</div>
+
+### Selected systems
+
+**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)**  
+AI-powered platform for tasks, goals, habits, notes, learning, and startup planning.  
+`FastAPI` · `React` · `PostgreSQL` · `Redis`
+
+**[Rakva](https://github.com/channallikrishnasai/Rakva)**  
+AI-powered disaster intelligence and recovery planning platform.  
+`Next.js` · `React` · `Three.js`
+
+<p align="center">
+  <img src="assets/nexus/mission-control.svg" width="900" alt="Project constellation connecting OPERO, LifeOS AI, and Rakva." />
+</p>
+
+### Systems I build
+
+`AI agents` · `Intelligent applications` · `Automation` · `Operations systems` · `Developer tools`
+
+<div align="center">
+  <img src="https://cdn.simpleicons.org/python/22D3EE" height="32" alt="Python" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/typescript/22D3EE" height="32" alt="TypeScript" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/react/22D3EE" height="32" alt="React" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/nextdotjs/E6F7FF" height="32" alt="Next.js" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/fastapi/22D3EE" height="32" alt="FastAPI" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/postgresql/22D3EE" height="32" alt="PostgreSQL" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/prisma/22D3EE" height="32" alt="Prisma" />&nbsp;&nbsp;
+  <img src="https://cdn.simpleicons.org/docker/22D3EE" height="32" alt="Docker" />
+</div>
+
+<br />
+
+<p align="center">
+  <img src="assets/nexus/github-activity.svg" width="900" alt="GitHub signal field based on verified public account data." />
+  <img src="assets/nexus/contribution-matrix.svg" width="900" alt="Contribution terrain generated from verified GitHub contribution data when available." />
 </p>
 
 <p align="center">
-  <img src="assets/nexus/boot-sequence.svg" width="900" alt="NEXUS system activation with AI runtime, agent engine, vision engine, voice engine, automation, and system core operational." />
+  <img src="assets/terminal/nexus-terminal.gif" width="900" alt="Animated terminal introducing Krishna Sai Channalli, his focus, OPERO, and online status." />
 </p>
 
 <p align="center">
-  <img src="assets/nexus/identity.svg" width="900" alt="Digital identity chamber for Krishna Sai Channalli, Computer Science Engineer focused on AI, agents, vision, automation, and systems." />
+  <img src="assets/nexus/engineering-philosophy.svg" width="900" alt="Engineering protocol: build, experiment, measure, automate, verify, ship." />
 </p>
 
-<p align="center">
-  <img src="assets/nexus/neural-constellation.svg" width="900" alt="A dimensional neural constellation representing AI, agents, vision, voice, automation, Python, systems, web, and databases." />
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="assets/nexus/mission-control.svg" width="900" alt="Project constellation featuring OPERO, LifeOS AI, and Rakva." />
-</p>
+**[GitHub](https://github.com/channallikrishnasai)** · **[LinkedIn](https://www.linkedin.com/in/krishna-sai-channalli-4528262b3)**
 
-<p align="center">
-  <img src="assets/nexus/opero-core.svg" width="900" alt="OPERO operations core for order, incident, inventory, task, and audit activity." />
-</p>
-
-<p align="center">
-  <img src="assets/nexus/github-activity.svg" width="900" alt="GitHub activity signal field. Only authenticated, verified public GitHub data is displayed." />
-  <img src="assets/nexus/contribution-matrix.svg" width="900" alt="Dimensional contribution signal matrix based only on verified GitHub contribution data." />
-</p>
-
-<p align="center">
-  <img src="assets/nexus/terminal.svg" width="900" alt="Terminal: Krishna Sai Channalli, focused on AI systems and agent engineering; building intelligent experimental systems; status online." />
-</p>
-
-<p align="center">
-  <img src="assets/nexus/engineering-philosophy.svg" width="900" alt="Engineering philosophy: build, experiment, measure, automate, verify, ship." />
-</p>
-
-<p align="center">
-  <a href="https://github.com/channallikrishnasai">GitHub</a> ·
-  <a href="https://www.linkedin.com/in/krishna-sai-channalli-4528262b3">LinkedIn</a>
-</p>
-
-<p align="center">
-  <img src="assets/nexus/connection.svg" width="900" alt="Connection gateway with links to Krishna Sai Channalli's GitHub and LinkedIn." />
-</p>
+</div>
