@@ -30,12 +30,12 @@ Building intelligent systems that see, speak, think, and act.
 
 ### Selected systems
 
-**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)**  
-AI-powered platform for tasks, goals, habits, notes, learning, and startup planning.  
+**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)**<br />
+AI-powered platform for tasks, goals, habits, notes, learning, and startup planning.<br />
 `FastAPI` · `React` · `PostgreSQL` · `Redis`
 
-**[Rakva](https://github.com/channallikrishnasai/Rakva)**  
-AI-powered disaster intelligence and recovery planning platform.  
+**[Rakva](https://github.com/channallikrishnasai/Rakva)**<br />
+AI-powered disaster intelligence and recovery planning platform.<br />
 `Next.js` · `React` · `Three.js`
 
 <p align="center">
