@@ -13,7 +13,7 @@ for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|png|gif))',readme):
     if not (ROOT/ref).is_file(): errors.append(f'Missing README asset: {ref}')
     elif (ROOT/ref).stat().st_size == 0: errors.append(f'Empty README asset: {ref}')
 if not (ROOT/'.github/workflows/update-profile.yml').is_file(): errors.append('Missing update workflow')
-expected = {"hero-depth.svg", "technology-wall.svg", "project-depth.svg", "opero-flow.svg", "automation-flow.svg", "github-signal.svg", "terminal-depth.svg"}
+expected = {"hero-depth.svg", "technology-wall.svg"}
 actual = {path.name for path in (ROOT / "assets/nexus").glob("*.svg")} if (ROOT / "assets/nexus").is_dir() else set()
 if expected - actual: errors.append(f'Missing NEXUS assets: {", ".join(sorted(expected - actual))}')
 public_text = readme + "\n" + "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / "assets/nexus").glob("*.svg"))

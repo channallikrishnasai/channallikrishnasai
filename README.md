@@ -10,7 +10,7 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 
 </div>
 
-| SYSTEM | PROFILE STATUS | FOCUS | CURRENT BUILD |
+| SYSTEM | PROFILE STATE | FOCUS | CURRENT BUILD |
 | :-- | :-- | :-- | :-- |
 | NEXUS | Building | AI systems · agents · automation | [The-Opero](https://github.com/channallikrishnasai/The-Opero) |
 
@@ -33,15 +33,15 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 | Infrastructure | Docker · Docker Compose · S3 · OCI · OpenTelemetry · Tempo · Loki · GitHub Actions |
 | Tooling | pytest · Ruff · Pydantic · Zod · Cargo · Clippy · just · cargo-watch |
 
-### Engineering domains
-
 `AI agents` · `Intelligent applications` · `Computer vision` · `Voice systems` · `Automation` · `Developer infrastructure`
 
 ## 02 / Project systems
 
-<p align="center">
-  <img src="assets/nexus/project-depth.svg" width="100%" alt="Dimensional project composition linking The-Opero, VaultIQ AI, LifeOS AI, and PRISM." />
-</p>
+> **NEAR / THE-OPERO** — local desktop AI operator
+>
+> **MID / VAULTIQ AI · LIFEOS AI** — financial intelligence and life-management systems
+>
+> **FAR / PRISM** — local code intelligence and change navigation
 
 | System | Verified purpose | Core stack | Repository |
 | :-- | :-- | :-- | :-- |
@@ -54,9 +54,17 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 
 **Open Personal Execution &amp; Response Operator** — a local desktop AI operator with Python, PyQt6, Gemini integration, local execution modules, a dashboard, plugins, and a WhatsApp bridge.
 
-<p align="center">
-  <img src="assets/nexus/opero-flow.svg" width="100%" alt="The-Opero depth-layered execution flow: input, understand, investigate, decide, act, verify, and report." />
-</p>
+```text
+INPUT
+  ↓
+UNDERSTAND
+  ↓
+INVESTIGATE  →  DECIDE  →  ACT
+                           ↓
+                        VERIFY
+                           ↓
+                        REPORT
+```
 
 | Layer | Repository-supported role |
 | :-- | :-- |
@@ -84,9 +92,9 @@ Code intelligence for coding agents: tree-sitter analysis, local indexing, ranke
 
 ## 05 / Automation
 
-<p align="center">
-  <img src="assets/nexus/automation-flow.svg" width="100%" alt="Depth-layered automation process: trigger, understand, decide, execute, verify, and result." />
-</p>
+```text
+TRIGGER  →  UNDERSTAND  →  DECIDE  →  EXECUTE  →  VERIFY  →  RESULT
+```
 
 | System | Input | Processing | Output |
 | :-- | :-- | :-- | :-- |
@@ -96,17 +104,21 @@ Code intelligence for coding agents: tree-sitter analysis, local indexing, ranke
 
 ## 06 / GitHub signal
 
-<p align="center">
-  <img src="assets/nexus/github-signal.svg" width="100%" alt="Verified public GitHub account metrics refreshed by the profile workflow." />
-</p>
-
-Metrics are collected from the public GitHub account during the scheduled profile refresh; no activity or contribution totals are fabricated.
+Public repositories, current activity, and contribution history remain directly available on [my GitHub profile](https://github.com/channallikrishnasai). The profile README does not duplicate or fabricate those live metrics.
 
 ## 07 / Terminal
 
-<p align="center">
-  <img src="assets/nexus/terminal-depth.svg" width="100%" alt="NEXUS terminal summarizing Krishna Sai Channalli's profile, focus, current build, stack, and ready status." />
-</p>
+```text
+nexus@krishna:~$ system
+
+profile     Krishna Sai Channalli
+focus       AI / Agents / Automation
+current     The-Opero
+stack       Python / TypeScript / Rust
+status      Ready
+
+nexus@krishna:~$ _
+```
 
 ## Connect
 

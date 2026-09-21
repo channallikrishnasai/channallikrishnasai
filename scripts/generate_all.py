@@ -80,7 +80,7 @@ def lifeos_system():
  paths=''.join(f'<path d="M450 250Q{(450+x)//2} {(250+y)//2-35} {x} {y}" fill="none" stroke="#71eaff" stroke-opacity=".42" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{5+i*1.4}s" repeatCount="indefinite"/></path>' for i,(_,x,y) in enumerate(points)); nodes=''.join(f'<g><circle cx="{x}" cy="{y}" r="29" fill="#092033" stroke="#80ecff"/><circle cx="{x}" cy="{y}" r="7" fill="#98f7ff" filter="url(#bloom)"/><text x="{x}" y="{y+4}" fill="#eaffff" font-family="monospace" font-size="9" text-anchor="middle">{n}</text></g>' for n,x,y in points)
  return frame('LifeOS system orbit',900,520,f'{stars(900,520,42)}{t(48,52,"LIFEOS SYSTEM ORBIT",13,"#7cefff",sp=3)}<path d="M80 440Q450 70 820 440" fill="none" stroke="#4be5ff" stroke-opacity=".13"/>{orbit(450,250,245,138,26,"17 10")}{orbit(450,250,165,205,39,"5 13")}{paths}{core(450,250,52)}{t(450,254,"LIFEOS",13,"#06131d","middle",2)}{nodes}{t(450,486,"VERIFIED AI WORKSPACE DOMAINS",10,"#a8c8d3","middle",2)}')
 def main():
- p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));a=p.parse_args();d=github_data(a.token); from technical_interface import render_assets; assets=render_assets(CFG,d)
+ p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));p.parse_args(); from technical_interface import render_assets; assets=render_assets(CFG)
  for n,v in assets.items(): (NEXUS/n).parent.mkdir(parents=True,exist_ok=True);(NEXUS/n).write_text(v,encoding='utf-8')
  print(f'Generated {len(assets)} NEXUS SVG assets.')
 if __name__=='__main__':main()
