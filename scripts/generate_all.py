@@ -66,8 +66,21 @@ def github_data(token):
   with urllib.request.urlopen(q,timeout=20) as r:data['contributions']=json.load(r).get('data',{}).get('user',{}).get('contributionsCollection',{}).get('contributionCalendar',{}).get('weeks',[])
   return data
  except Exception as err: print(f'warning: GitHub data unavailable: {err}',file=sys.stderr);return None
+def technology_field():
+ groups=list(CFG['technologies'].items()); positions=[(250,180),(600,115),(960,180),(1030,460),(960,735),(600,810),(250,735),(170,460)]; body=stars(1200,920,52)+t(52,52,'NEXUS NEURAL TECHNOLOGY FIELD',14,'#7cefff',sp=3)+orbit(600,465,220,150,31,'18 10')+orbit(600,465,320,245,47,'5 12')+core(600,465,48)
+ for i,(key,items) in enumerate(groups):
+  x,y=positions[i]; accent=['#56eaff','#a78bfa','#60a5fa','#72e8c1','#6ee7b7','#f6b45f','#73d7ff','#b8c4d1'][i]; body+=f'<path d="M600 465Q{(600+x)//2} {(465+y)//2-50} {x} {y}" fill="none" stroke="{accent}" stroke-opacity=".35" stroke-dasharray="5 11"><animate attributeName="stroke-dashoffset" values="0;-64" dur="{6+i*2.1}s" repeatCount="indefinite"/></path><circle cx="{x}" cy="{y}" r="29" fill="#071827" stroke="{accent}" stroke-opacity=".8"><animate attributeName="r" values="27;31;27" dur="{2.4+i*.7}s" repeatCount="indefinite"/></circle>{t(x,y+4,key.upper(),9,accent,'middle',1)}'
+  lines=[' · '.join(items[j:j+3]) for j in range(0,len(items),3)]
+  for line_index,line in enumerate(lines): body+=t(x,y+48+line_index*15,line,10,'#c8e4ed','middle')
+ body+=t(600,471,'NEXUS',14,'#06131d','middle',2)+t(600,497,'SYSTEM CORE',9,'#06131d','middle')
+ return frame('NEXUS neural technology field',1200,920,body)
+def lifeos_system():
+ names=['CAREER','LIFE','PLANNER','SKILL','STUDY','STARTUP','FUTURE']; points=[]
+ for i,name in enumerate(names): points.append((name,450+int(245*math.cos(-math.pi/2+i*2*math.pi/7)),250+int(138*math.sin(-math.pi/2+i*2*math.pi/7))))
+ paths=''.join(f'<path d="M450 250Q{(450+x)//2} {(250+y)//2-35} {x} {y}" fill="none" stroke="#71eaff" stroke-opacity=".42" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{5+i*1.4}s" repeatCount="indefinite"/></path>' for i,(_,x,y) in enumerate(points)); nodes=''.join(f'<g><circle cx="{x}" cy="{y}" r="29" fill="#092033" stroke="#80ecff"/><circle cx="{x}" cy="{y}" r="7" fill="#98f7ff" filter="url(#bloom)"/><text x="{x}" y="{y+4}" fill="#eaffff" font-family="monospace" font-size="9" text-anchor="middle">{n}</text></g>' for n,x,y in points)
+ return frame('LifeOS system orbit',900,520,f'{stars(900,520,42)}{t(48,52,"LIFEOS SYSTEM ORBIT",13,"#7cefff",sp=3)}<path d="M80 440Q450 70 820 440" fill="none" stroke="#4be5ff" stroke-opacity=".13"/>{orbit(450,250,245,138,26,"17 10")}{orbit(450,250,165,205,39,"5 13")}{paths}{core(450,250,52)}{t(450,254,"LIFEOS",13,"#06131d","middle",2)}{nodes}{t(450,486,"VERIFIED AI WORKSPACE DOMAINS",10,"#a8c8d3","middle",2)}')
 def main():
- p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));a=p.parse_args();d=github_data(a.token); assets={'github-activity.svg':activity(d),'contribution-matrix.svg':contributions(d)}
+ p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));a=p.parse_args();d=github_data(a.token); assets={'system-awakening.svg':boot(),'technology-field.svg':technology_field(),'project-constellation.svg':missions(),'lifeos-system.svg':lifeos_system(),'engineering-loop.svg':philosophy(),'connection-gateway.svg':connection(),'github-activity.svg':activity(d),'contribution-matrix.svg':contributions(d)}
  for n,v in assets.items(): (NEXUS/n).parent.mkdir(parents=True,exist_ok=True);(NEXUS/n).write_text(v,encoding='utf-8')
  from generate_raster import generate as generate_raster
  generate_raster()

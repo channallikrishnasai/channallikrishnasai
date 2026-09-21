@@ -10,29 +10,19 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 
 </div>
 
+<p align="center"><img src="assets/nexus/system-awakening.svg" width="900" alt="NEXUS system awakening: AI runtime, agent engine, vision, voice, automation, and system core activate around one central core." /></p>
+
 ### Engineering stack
 
-<div align="center">
-  <img src="https://cdn.simpleicons.org/python/22D3EE" height="30" alt="Python" />&nbsp;
-  <img src="https://cdn.simpleicons.org/typescript/22D3EE" height="30" alt="TypeScript" />&nbsp;
-  <img src="https://cdn.simpleicons.org/javascript/22D3EE" height="30" alt="JavaScript" />&nbsp;
-  <img src="https://cdn.simpleicons.org/rust/E6F7FF" height="30" alt="Rust" />&nbsp;
-  <img src="https://cdn.simpleicons.org/react/22D3EE" height="30" alt="React" />&nbsp;
-  <img src="https://cdn.simpleicons.org/nextdotjs/E6F7FF" height="30" alt="Next.js" />&nbsp;
-  <img src="https://cdn.simpleicons.org/fastapi/22D3EE" height="30" alt="FastAPI" />&nbsp;
-  <img src="https://cdn.simpleicons.org/postgresql/22D3EE" height="30" alt="PostgreSQL" />&nbsp;
-  <img src="https://cdn.simpleicons.org/prisma/22D3EE" height="30" alt="Prisma" />&nbsp;
-  <img src="https://cdn.simpleicons.org/docker/22D3EE" height="30" alt="Docker" />&nbsp;
-  <img src="https://cdn.simpleicons.org/threedotjs/22D3EE" height="30" alt="Three.js" />
-</div>
-
-<p align="center"><sub>Python · TypeScript · JavaScript · Rust · React · Next.js · Vite · Tailwind CSS · FastAPI · Axum · PostgreSQL · SQLite · Supabase · Prisma · Redis · Docker · OpenTelemetry</sub></p>
+<p align="center"><img src="assets/nexus/technology-field.svg" width="100%" alt="Animated NEXUS neural technology field grouping verified languages, AI, frontend, backend, data, automation, infrastructure, and tooling." /></p>
 
 ### System domains
 
 `AI agents` · `Intelligent applications` · `Computer vision` · `Voice systems` · `Automation` · `Developer infrastructure`
 
 ### Selected systems
+
+<p align="center"><img src="assets/nexus/project-constellation.svg" width="900" alt="Animated constellation linking the verified public systems The-Opero, VaultIQ AI, LifeOS AI, and PRISM." /></p>
 
 **[VaultIQ AI](https://github.com/channallikrishnasai/vaultiq-ai)** — AI-powered personal finance for budgeting, investing, fraud protection, goals, and scenario planning.<br />
 `Next.js 16` · `TypeScript` · `Prisma` · `Tailwind CSS` · multiple AI providers
@@ -41,6 +31,8 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 
 **[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)** — life-management platform for projects, goals, habits, learning, and startup planning.<br />
 `FastAPI` · `React` · `PostgreSQL` · `Redis` · `WebSockets` · specialized AI agents
+
+<p align="center"><img src="assets/nexus/lifeos-system.svg" width="900" alt="LifeOS system orbit visualizing verified career, life, planner, skill, study, startup, and future AI workspace domains." /></p>
 
 **[PRISM / Entire Graph](https://github.com/channallikrishnasai/PRISM)** — coding-agent plugin for local repository maps, ranked code search, and change-impact navigation.<br />
 `Go` · `tree-sitter` · local indexing · CLI plugin architecture
@@ -62,6 +54,10 @@ Computer Science Engineer building intelligent systems across AI, agents, vision
 **The-Opero** — local desktop AI execution and response automation.
 
 <p align="center"><img src="assets/terminal/nexus-terminal.gif" width="900" alt="Animated terminal showing profile focus, current system, and status." /></p>
+
+<p align="center"><img src="assets/nexus/engineering-loop.svg" width="900" alt="Engineering loop: build, experiment, measure, automate, verify, and ship." /></p>
+
+<p align="center"><img src="assets/nexus/connection-gateway.svg" width="900" alt="NEXUS connection gateway linking to Krishna Sai Channalli's GitHub and LinkedIn." /></p>
 
 <div align="center">
 
