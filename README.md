@@ -1,64 +1,113 @@
-<p align="center"><img src="assets/nexus/hero.svg" width="100%" alt="Animated dimensional NEXUS typography for Krishna Sai Channalli, AI systems, agents, automation, and engineering." /></p>
+<p align="center">
+  <img src="assets/nexus/hero-depth.svg" width="100%" alt="NEXUS depth typography: Krishna Sai Channalli, Computer Science Engineer, AI systems, agents, and automation." />
+</p>
 
 <div align="center">
 
-# N E X U S
+# Krishna Sai Channalli
 
-## Krishna Sai Channalli
-
-**Computer Science Engineer**<br />
-AI systems · agents · automation · engineering
+Computer Science Engineer building intelligent systems across AI, agents, vision, voice, automation, and full-stack engineering.
 
 </div>
 
-<p align="center"><img src="assets/nexus/technology-matrix.svg" width="100%" alt="Animated technical matrix of verified languages, AI, frontend, backend, data, automation, infrastructure, and tooling." /></p>
+| SYSTEM | PROFILE STATUS | FOCUS | CURRENT BUILD |
+| :-- | :-- | :-- | :-- |
+| NEXUS | Building | AI systems · agents · automation | [The-Opero](https://github.com/channallikrishnasai/The-Opero) |
 
-<p align="center"><img src="assets/nexus/technology-network.svg" width="100%" alt="Compact animated technology network representing the conceptual engineering ecosystem." /></p>
+## 01 / Technology
+
+<p align="center">
+  <img src="assets/nexus/technology-wall.svg" width="100%" alt="Dimensional typographic wall showing selected verified technologies including Python, TypeScript, React, FastAPI, PostgreSQL, Docker, Gemini, Prisma, PyQt6, and OpenTelemetry." />
+</p>
+
+### Technology matrix
+
+| Domain | Verified public-repository stack |
+| :-- | :-- |
+| Languages | Python · TypeScript · JavaScript · Rust · SQL · HTML · CSS |
+| AI | Google Gemini · OpenAI · OpenRouter · Groq · AI agents · Agent orchestration |
+| Frontend | React · Next.js · Vite · Tailwind CSS · Radix UI · Framer Motion · TanStack Router · TanStack Query · Zustand · Three.js · React Three Fiber · Drei |
+| Backend | FastAPI · Uvicorn · Node.js · Next.js API Routes · Axum |
+| Data | PostgreSQL · SQLite · Supabase · Prisma · SQLx · Redis |
+| Automation | PyQt6 · PyAutoGUI · Browser automation · WebSockets |
+| Infrastructure | Docker · Docker Compose · S3 · OCI · OpenTelemetry · Tempo · Loki · GitHub Actions |
+| Tooling | pytest · Ruff · Pydantic · Zod · Cargo · Clippy · just · cargo-watch |
 
 ### Engineering domains
 
-`AI systems` · `Agent systems` · `Automation` · `Computer vision` · `Voice systems` · `Full-stack systems`
+`AI agents` · `Intelligent applications` · `Computer vision` · `Voice systems` · `Automation` · `Developer infrastructure`
 
-<p align="center"><img src="assets/nexus/project-systems.svg" width="100%" alt="Animated technical table of The-Opero, VaultIQ AI, LifeOS AI, and PRISM, linked to their public repositories." /></p>
+## 02 / Project systems
 
-### The-Opero // Autonomous Operator Core
+<p align="center">
+  <img src="assets/nexus/project-depth.svg" width="100%" alt="Dimensional project composition linking The-Opero, VaultIQ AI, LifeOS AI, and PRISM." />
+</p>
 
-**[The-Opero](https://github.com/channallikrishnasai/The-Opero)** — Open Personal Execution &amp; Response Operator: a local desktop AI operator using Python, PyQt6, Gemini integration, local execution modules, dashboard, plugins, and a WhatsApp bridge.
+| System | Verified purpose | Core stack | Repository |
+| :-- | :-- | :-- | :-- |
+| The-Opero | Open Personal Execution &amp; Response Operator; a local desktop AI operator. | Python · PyQt6 · Gemini integration | [View →](https://github.com/channallikrishnasai/The-Opero) |
+| VaultIQ AI | Personal-finance platform for budgeting, investing, fraud protection, goals, and scenario planning. | Next.js 16 · TypeScript · Prisma · Tailwind CSS | [View →](https://github.com/channallikrishnasai/vaultiq-ai) |
+| LifeOS AI | AI life-management platform for projects, goals, habits, learning, and startup planning. | FastAPI · React · PostgreSQL · Redis · WebSockets | [View →](https://github.com/channallikrishnasai/LifeOS-AI) |
+| PRISM / Entire Graph | Coding-agent plugin for local repository maps, ranked code search, and change-impact navigation. | Go · tree-sitter · local indexing | [View →](https://github.com/channallikrishnasai/PRISM) |
 
-<p align="center"><img src="assets/nexus/opero-architecture.svg" width="100%" alt="Animated The-Opero technical architecture: input, intelligence, local tools, automation, research, execution, verification, and result." /></p>
+## 03 / The-Opero
 
-<p align="center"><a href="https://github.com/channallikrishnasai/The-Opero"><img src="assets/source/the-opero/pipeline.svg" width="900" alt="Repository-native The-Opero execution pipeline." /></a></p>
+**Open Personal Execution &amp; Response Operator** — a local desktop AI operator with Python, PyQt6, Gemini integration, local execution modules, a dashboard, plugins, and a WhatsApp bridge.
 
-### VaultIQ AI // Financial Intelligence
+<p align="center">
+  <img src="assets/nexus/opero-flow.svg" width="100%" alt="The-Opero depth-layered execution flow: input, understand, investigate, decide, act, verify, and report." />
+</p>
 
-**[VaultIQ AI](https://github.com/channallikrishnasai/vaultiq-ai)** — personal-finance platform for budgeting, investing, fraud protection, goals, and scenario planning.
+| Layer | Repository-supported role |
+| :-- | :-- |
+| Input | Local operator inputs and commands |
+| Intelligence | Gemini integration and response processing |
+| Execution | Local execution modules, plugins, and desktop operator surface |
+| Communication | WhatsApp bridge included in the public project |
+| Response loop | Investigate → decide → act → verify → report |
 
-<p align="center"><img src="assets/nexus/vaultiq-system.svg" width="100%" alt="VaultIQ technical system map for expenses, goals, portfolio, budget, investing, and fraud-protection functions." /></p>
+[Explore The-Opero →](https://github.com/channallikrishnasai/The-Opero)
 
-### LifeOS AI // Life-System Map
+## 04 / Systems in focus
 
-**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)** — AI life-management platform for projects, goals, habits, learning, and startup planning.
+### VaultIQ AI
 
-<p align="center"><img src="assets/nexus/lifeos-system.svg" width="100%" alt="LifeOS technical system map of career, life, planner, skill, study, and startup domains." /></p>
+Financial intelligence for budgeting, investing, fraud protection, goals, and scenario planning. Its public repository uses Next.js 16, TypeScript, Prisma, Tailwind CSS, and multiple AI providers.
 
-### PRISM // Code Intelligence
+### LifeOS AI
 
-**[PRISM / Entire Graph](https://github.com/channallikrishnasai/PRISM)** — local repository maps, ranked code search, and change-impact navigation for coding agents.
+Life-management workspace spanning projects, goals, habits, learning, and startup planning, built with FastAPI, React, PostgreSQL, Redis, WebSockets, and specialized AI agents.
 
-<p align="center"><img src="assets/nexus/prism-system.svg" width="100%" alt="PRISM technical system map of repository analysis, tree-sitter, local indexing, search, maps, and impact navigation." /></p>
+### PRISM / Entire Graph
 
-<p align="center"><img src="assets/nexus/automation-engine.svg" width="100%" alt="Animated automation engine signal pipeline: trigger, detect, understand, decide, execute, verify, and report." /></p>
+Code intelligence for coding agents: tree-sitter analysis, local indexing, ranked search, repository maps, and change-impact navigation.
 
-<p align="center"><img src="assets/nexus/github-activity.svg" width="100%" alt="GitHub technical signal based on verified public account data." /><img src="assets/nexus/contribution-matrix.svg" width="100%" alt="Dimensional contribution matrix based on verified GitHub contribution data." /></p>
+## 05 / Automation
 
-<p align="center"><img src="assets/nexus/engineering-loop.svg" width="100%" alt="Engineering loop: build, experiment, measure, automate, verify, and ship." /></p>
+<p align="center">
+  <img src="assets/nexus/automation-flow.svg" width="100%" alt="Depth-layered automation process: trigger, understand, decide, execute, verify, and result." />
+</p>
 
-<p align="center"><img src="assets/nexus/terminal.svg" width="100%" alt="Animated NEXUS terminal showing profile, focus, current project, and verified project scan." /></p>
+| System | Input | Processing | Output |
+| :-- | :-- | :-- | :-- |
+| Browser automation | Command | Browser control | Verified action |
+| Repository analysis | Code | Indexing and analysis | Search, maps, or navigation |
+| Financial intelligence | Financial data | AI analysis | Insight |
 
-<p align="center"><img src="assets/nexus/connection-gateway.svg" width="100%" alt="NEXUS connection gateway with GitHub and LinkedIn links." /></p>
+## 06 / GitHub signal
 
-<div align="center">
+<p align="center">
+  <img src="assets/nexus/github-signal.svg" width="100%" alt="Verified public GitHub account metrics refreshed by the profile workflow." />
+</p>
 
-**[GitHub](https://github.com/channallikrishnasai)** · **[LinkedIn](https://www.linkedin.com/in/krishna-sai-channalli-4528262b3)**
+Metrics are collected from the public GitHub account during the scheduled profile refresh; no activity or contribution totals are fabricated.
 
-</div>
+## 07 / Terminal
+
+<p align="center">
+  <img src="assets/nexus/terminal-depth.svg" width="100%" alt="NEXUS terminal summarizing Krishna Sai Channalli's profile, focus, current build, stack, and ready status." />
+</p>
+
+## Connect
+
+[GitHub](https://github.com/channallikrishnasai) · [LinkedIn](https://www.linkedin.com/in/krishna-sai-channalli-4528262b3)

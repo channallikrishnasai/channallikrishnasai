@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+<title id="title">Dimensional composition of selected public projects</title><desc id="desc">Dimensional composition of selected public projects. The graphic has a readable static state when animation is unavailable.</desc>
+<defs>
+  <linearGradient id="face" x2="0" y2="1"><stop stop-color="#f5fdff"/><stop offset=".38" stop-color="#8cefff"/><stop offset="1" stop-color="#227da8"/></linearGradient>
+  <linearGradient id="sweep" x1="0" x2="1"><stop stop-color="#7cefff" stop-opacity="0"/><stop offset=".5" stop-color="#e7ffff" stop-opacity=".85"/><stop offset="1" stop-color="#7cefff" stop-opacity="0"/></linearGradient>
+  <pattern id="grain" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 .5H8" stroke="#bdefff" stroke-opacity=".025"/></pattern>
+</defs>
+<rect width="1200" height="570" rx="18" fill="#03070d"/><rect width="1200" height="570" rx="18" fill="url(#grain)"/><text x="62" y="54" fill="#7feeff" font-family="monospace" font-size="12" letter-spacing="3">03 // SELECTED SYSTEMS</text><text x="62" y="80" fill="#91afbd" font-family="monospace" font-size="10" letter-spacing="1.5">DEPTH POSITIONS ARE EDITORIAL; PROJECT DETAILS AND LINKS FOLLOW IN MARKDOWN.</text><path d="M65 534H1135" stroke="#5de9fa" stroke-opacity=".16"/><a href="https://github.com/channallikrishnasai/The-Opero"><g>
+<animateTransform attributeName="transform" type="translate" values="-39 -13;0 0;0 0" dur="1.4s" begin="0.1s" fill="freeze"/>
+<path d="M645 112l16 13v155l-16 -13z" fill="#061827" stroke="#14516f"/><path d="M110 267h535l16 13H126z" fill="#04101c" stroke="#14516f"/>
+<rect x="110" y="112" width="535" height="155" rx="8" fill="#071522" stroke="#4edff8" stroke-opacity=".72"/><path d="M124 129H631" stroke="#ddffff" stroke-opacity=".55"/>
+<text x="132" y="166" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">THE-OPERO</text>
+<text x="132" y="195" fill="#a8c4d2" font-family="monospace" font-size="11">LOCAL DESKTOP AI OPERATOR</text><text x="132" y="225" fill="#78eaff" font-family="monospace" font-size="10">PYTHON · PYQT6 · GEMINI</text>
+<path d="M132 248H623" stroke="#4de2fa" stroke-opacity=".24" stroke-dasharray="9 12"><animate attributeName="stroke-dashoffset" values="0;-63" dur="6.1s" repeatCount="indefinite"/></path></g></a><a href="https://github.com/channallikrishnasai/vaultiq-ai"><g>
+<animateTransform attributeName="transform" type="translate" values="7 -8;0 0;0 0" dur="1.4s" begin="0.38s" fill="freeze"/>
+<path d="M1080 168l16 13v148l-16 -13z" fill="#061827" stroke="#14516f"/><path d="M690 316h390l16 13H706z" fill="#04101c" stroke="#14516f"/>
+<rect x="690" y="168" width="390" height="148" rx="8" fill="#071522" stroke="#4edff8" stroke-opacity=".72"/><path d="M704 185H1066" stroke="#ddffff" stroke-opacity=".55"/>
+<text x="712" y="222" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">VAULTIQ AI</text>
+<text x="712" y="251" fill="#a8c4d2" font-family="monospace" font-size="11">PERSONAL-FINANCE INTELLIGENCE</text><text x="712" y="281" fill="#78eaff" font-family="monospace" font-size="10">NEXT.JS · TYPESCRIPT · PRISMA</text>
+<path d="M712 304H1058" stroke="#4de2fa" stroke-opacity=".24" stroke-dasharray="9 12"><animate attributeName="stroke-dashoffset" values="0;-63" dur="6.38s" repeatCount="indefinite"/></path></g></a><a href="https://github.com/channallikrishnasai/LifeOS-AI"><g>
+<animateTransform attributeName="transform" type="translate" values="-24 5;0 0;0 0" dur="1.4s" begin="0.55s" fill="freeze"/>
+<path d="M705 348l16 13v148l-16 -13z" fill="#061827" stroke="#14516f"/><path d="M295 496h410l16 13H311z" fill="#04101c" stroke="#14516f"/>
+<rect x="295" y="348" width="410" height="148" rx="8" fill="#071522" stroke="#4edff8" stroke-opacity=".72"/><path d="M309 365H691" stroke="#ddffff" stroke-opacity=".55"/>
+<text x="317" y="402" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">LIFEOS AI</text>
+<text x="317" y="431" fill="#a8c4d2" font-family="monospace" font-size="11">AI LIFE MANAGEMENT</text><text x="317" y="461" fill="#78eaff" font-family="monospace" font-size="10">FASTAPI · REACT · POSTGRESQL</text>
+<path d="M317 484H683" stroke="#4de2fa" stroke-opacity=".24" stroke-dasharray="9 12"><animate attributeName="stroke-dashoffset" values="0;-63" dur="6.55s" repeatCount="indefinite"/></path></g></a><a href="https://github.com/channallikrishnasai/PRISM"><g>
+<animateTransform attributeName="transform" type="translate" values="12 7;0 0;0 0" dur="1.4s" begin="0.72s" fill="freeze"/>
+<path d="M1090 374l16 13v140l-16 -13z" fill="#061827" stroke="#14516f"/><path d="M760 514h330l16 13H776z" fill="#04101c" stroke="#14516f"/>
+<rect x="760" y="374" width="330" height="140" rx="8" fill="#071522" stroke="#4edff8" stroke-opacity=".72"/><path d="M774 391H1076" stroke="#ddffff" stroke-opacity=".55"/>
+<text x="782" y="428" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">PRISM</text>
+<text x="782" y="457" fill="#a8c4d2" font-family="monospace" font-size="11">CODE INTELLIGENCE</text><text x="782" y="487" fill="#78eaff" font-family="monospace" font-size="10">GO · TREE-SITTER · LOCAL INDEX</text>
+<path d="M782 510H1068" stroke="#4de2fa" stroke-opacity=".24" stroke-dasharray="9 12"><animate attributeName="stroke-dashoffset" values="0;-63" dur="6.72s" repeatCount="indefinite"/></path></g></a></svg>
