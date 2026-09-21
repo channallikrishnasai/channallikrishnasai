@@ -15,11 +15,11 @@
 </p>
 
 <p align="center">
-  <img src="assets/nexus/mission-control.svg" width="900" alt="Mission Control. Public project modules appear only after verified project data is configured." />
+  <img src="assets/nexus/mission-control.svg" width="900" alt="Project constellation featuring OPERO, LifeOS AI, and Rakva." />
 </p>
 
 <p align="center">
-  <img src="assets/nexus/opero-core.svg" width="900" alt="OPERO core visualization. Project-specific capabilities are intentionally withheld pending public project verification." />
+  <img src="assets/nexus/opero-core.svg" width="900" alt="OPERO operations core for order, incident, inventory, task, and audit activity." />
 </p>
 
 <p align="center">

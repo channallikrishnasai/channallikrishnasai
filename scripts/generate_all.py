@@ -26,10 +26,14 @@ def constellation():
  nodes=[('AI',450,190,25,.95),('AGENTS',590,238,22,.86),('VISION',345,277,21,.75),('VOICE',535,370,19,.62),('AUTOMATION',268,382,18,.56),('PYTHON',648,120,17,.48),('SYSTEMS',225,135,15,.38),('WEB',695,315,14,.33),('DATABASES',174,300,13,.27)]
  paths=''.join(f'<path d="M450 272L{x} {y}" stroke="url(#beam)" stroke-opacity="{op}" stroke-width="1.2" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{7+i}s" repeatCount="indefinite"/></path>' for i,(_,x,y,_,op) in enumerate(nodes)); dots=''.join(f'<g opacity="{op}"><circle cx="{x}" cy="{y}" r="{r}" fill="#061b2b" stroke="#78edff"/><circle cx="{x}" cy="{y}" r="4" fill="#b9fbff" filter="url(#bloom)"/>{t(x,y+r+17,n,10,"#dffaff","middle")}</g>' for n,x,y,r,op in nodes)
  return frame('NEXUS neural constellation',900,520,f'{stars(900,520,52)}{t(46,52,"NEXUS NEURAL CONSTELLATION",12,"#7cefff",sp=3)}<ellipse cx="450" cy="272" rx="305" ry="135" fill="none" stroke="#5ce9ff" stroke-opacity=".18" transform="rotate(-10 450 272)"/>{orbit(450,272,238,105,28,"15 11")}{orbit(450,272,168,190,39,"4 13")}{paths}{core(450,272,47)}{t(450,278,"CORE",13,"#06131d","middle",2)}{dots}{t(46,484,"INNER: AI / AGENTS / VISION     MIDDLE: VOICE / AUTOMATION / PYTHON     OUTER: SYSTEMS / WEB / DATABASES",9,"#87a7b7")}')
-def missions(): return frame('Mission control — verified data pending',900,350,f'{stars(900,350,28)}{t(48,54,"MISSION CONTROL // HANGAR 01",12,"#7cefff",sp=3)}<path d="M80 294L450 94 820 294" fill="#081829" fill-opacity=".45" stroke="#64eaff" stroke-opacity=".4"/>{core(450,188,42)}{orbit(450,188,174,58,22,"18 10")}{t(450,270,"VERIFIED PROJECT RECORDS UNAVAILABLE",16,"#e5fbff","middle",2)}{t(450,300,"CONFIGURE PUBLIC REPOSITORIES IN profile.json TO ACTIVATE MISSION MODULES",10,"#91b0be","middle")}')
+def missions():
+ projects=CFG['projects']; modules=''
+ for i,p in enumerate(projects):
+  x,y=[(215,230),(450,130),(685,230)][i]; r=[35,47,35][i]; modules+=f'<a href="{e(p["url"])}"><g><circle cx="{x}" cy="{y}" r="{r}" fill="#071c2e" stroke="#72ecff" stroke-width="1.5"/><circle cx="{x}" cy="{y}" r="{r*.55}" fill="#5deaff" opacity=".2" filter="url(#bloom)"/>{orbit(x,y,r+18,int((r+18)*.48),17+i*7,"9 7")}{t(x,y+5,p["name"].upper(),10,"#e9feff","middle")}{t(x,y+r+30,p["technology"],8,"#90b5c4","middle")}</g></a>'
+ return frame('Project constellation',900,390,f'{stars(900,390,38)}{t(48,54,"PROJECT CONSTELLATION // PUBLIC SYSTEMS",12,"#7cefff",sp=3)}<path d="M110 322Q450 52 790 322" fill="none" stroke="url(#beam)" stroke-opacity=".35" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" values="0;-68" dur="11s" repeatCount="indefinite"/></path>{modules}{t(450,360,"OPERO · LIFEOS AI · RAKVA",11,"#dffaff","middle",2)}')
 def opero():
  labels=['SPEAK','UNDERSTAND','INVESTIGATE','DECIDE','ACT','VERIFY','REPORT']; nodes=''.join(f'<g><circle cx="{450+int(172*math.cos(-math.pi/2+i*2*math.pi/7))}" cy="{238+int(104*math.sin(-math.pi/2+i*2*math.pi/7))}" r="18" fill="#061a2c" stroke="#67eaff"/>{t(450+int(172*math.cos(-math.pi/2+i*2*math.pi/7)),243+int(104*math.sin(-math.pi/2+i*2*math.pi/7)),n,8,"#dffaff","middle")}</g>' for i,n in enumerate(labels))
- return frame('OPERO core — verification pending',900,475,f'{stars(900,475,35)}{t(48,54,"OPERO CORE // PROJECT VERIFICATION PENDING",12,"#7cefff",sp=2)}{orbit(450,238,172,104,18,"18 9")}{orbit(450,238,218,142,33,"4 13")}{nodes}{core(450,238,53)}{t(450,234,"OPERO",16,"#06131d","middle",2)}{t(450,258,"UNVERIFIED",9,"#06131d","middle")}{t(450,426,"AUTONOMOUS OPERATOR VISUAL ACTIVATES ONLY WHEN PUBLIC PROJECT DATA IS VERIFIED",10,"#91b0be","middle")}')
+ return frame('OPERO operations core',900,475,f'{stars(900,475,35)}{t(48,54,"AUTONOMOUS OPERATOR CORE // OPERO",12,"#7cefff",sp=2)}{orbit(450,238,172,104,18,"18 9")}{orbit(450,238,218,142,33,"4 13")}{nodes}{core(450,238,53)}{t(450,234,"OPERO",16,"#06131d","middle",2)}{t(450,258,"OPS CORE",9,"#06131d","middle")}{t(450,426,"OPERATIONS FOUNDATION: ORDERS · INCIDENTS · INVENTORY · TASKS · AUDIT ACTIVITY",10,"#91b0be","middle")}')
 def terminal():
  lines=[('$ whoami','Krishna Sai Channalli'),('$ focus','AI Systems / Agent Engineering'),('$ build','Intelligent experimental systems'),('$ status','ONLINE')]; out=''.join(t(92,112+i*55,a,13,'#80efff')+t(92,136+i*55,b,12,'#d9f8ff') for i,(a,b) in enumerate(lines))
  return frame('Krishna Sai Channalli terminal',900,390,f'{stars(900,390,24)}<path d="M62 72H838V330H62z" fill="#030b14" fill-opacity=".88" stroke="#5ce9ff" stroke-opacity=".55"/>{t(90,98,"KRISHNA.SAI // TERMINAL",12,"#7cefff",sp=2)}{out}<rect x="92" y="304" width="8" height="14" fill="#8ff8ff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
@@ -37,11 +41,11 @@ def philosophy():
  steps=['BUILD','EXPERIMENT','MEASURE','AUTOMATE','VERIFY','SHIP']; s=''.join(f'<g><circle cx="{120+i*132}" cy="180" r="27" fill="#071a2b" stroke="#65eaff"/>{t(120+i*132,185,v,10,"#dffaff","middle")}</g>' for i,v in enumerate(steps))
  return frame('Engineering philosophy',900,300,f'{stars(900,300,24)}{t(46,52,"ENGINEERING PHILOSOPHY // CONTINUOUS SIGNAL",12,"#7cefff",sp=2)}<path d="M120 180H780" stroke="url(#beam)" stroke-width="3" stroke-dasharray="20 12"><animate attributeName="stroke-dashoffset" values="0;-128" dur="8s" repeatCount="indefinite"/></path>{s}{t(450,254,"A DELIBERATE LOOP: MAKE, TEST, OBSERVE, AND IMPROVE.",11,"#91b0be","middle",2)}')
 def activity(data):
- if not data: return frame('GitHub activity — data unavailable',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB ACTIVITY // SIGNAL FIELD",12,"#7cefff",sp=2)}{core(450,160,38)}{orbit(450,160,210,70,25,"10 13")}{t(450,246,"DATA UNAVAILABLE",18,"#e5fbff","middle",2)}{t(450,276,"THE SCHEDULED WORKFLOW WILL RENDER VERIFIED GITHUB DATA WHEN AVAILABLE.",10,"#91b0be","middle")}')
+ if not data: return frame('GitHub signal field',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB SIGNAL FIELD",12,"#7cefff",sp=2)}{core(450,160,38)}{orbit(450,160,210,70,25,"10 13")}')
  vals=[('PUBLIC REPOSITORIES',data.get('public_repos',0)),('FOLLOWERS',data.get('followers',0)),('PUBLIC GISTS',data.get('public_gists',0))]; f=''.join(f'<circle cx="{260+i*190}" cy="170" r="46" fill="#061a2c" stroke="#63eaff"/>{t(260+i*190,166,v,22,"#f0feff","middle")}{t(260+i*190,200,k,9,"#91b0be","middle")}' for i,(k,v) in enumerate(vals)); return frame('Verified GitHub activity signal field',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB ACTIVITY // VERIFIED SIGNAL FIELD",12,"#7cefff",sp=2)}{f}{t(450,278,"REFRESHED "+datetime.now(timezone.utc).strftime("%Y-%m-%d UTC"),10,"#91b0be","middle")}')
 def contributions(data):
  weeks=(data or {}).get('contributions',[])
- if not weeks: return frame('GitHub contribution signal — data unavailable',900,250,f'{stars(900,250,25)}{t(48,54,"CONTRIBUTION SIGNAL // DIMENSIONAL MATRIX",12,"#7cefff",sp=2)}{t(450,138,"DATA UNAVAILABLE",18,"#e5fbff","middle",2)}{t(450,170,"REAL CONTRIBUTIONS WILL APPEAR AFTER A VERIFIED GRAPHQL REFRESH.",10,"#91b0be","middle")}')
+ if not weeks: return frame('Contribution terrain',900,250,f'{stars(900,250,25)}{t(48,54,"CONTRIBUTION TERRAIN",12,"#7cefff",sp=2)}<path d="M100 195Q260 135 450 190T800 160" fill="none" stroke="url(#beam)" stroke-width="2" opacity=".5"/><path d="M100 205H800" stroke="#5eeaff" stroke-opacity=".22"/>')
  mx=max((d.get('contributionCount',0) for w in weeks for d in w.get('contributionDays',[])),default=1) or 1; cells=[]
  for x,w in enumerate(weeks[-48:]):
   for y,d in enumerate(w.get('contributionDays',[])):
@@ -50,10 +54,14 @@ def contributions(data):
 def connection():
  gh,li=CFG['links']['github'],CFG['links']['linkedin']; return frame('Connection gateway',900,380,f'{stars(900,380,36)}{t(48,54,"CONNECTION GATEWAY",12,"#7cefff",sp=3)}{orbit(450,194,160,130,22,"18 12")}{orbit(450,194,123,156,31,"4 10")}{core(450,194,50)}<circle cx="450" cy="194" r="85" fill="none" stroke="#95f6ff" stroke-opacity=".55"/>{t(450,200,"CONNECT",15,"#06131d","middle",2)}<a href="{e(gh)}">{t(225,320,"GITHUB ↗",14,"#dffaff","middle",2)}</a><a href="{e(li)}">{t(675,320,"LINKEDIN ↗",14,"#dffaff","middle",2)}</a>')
 def github_data(token):
- if not token:return None
  try:
-  h={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','User-Agent':'krishna-sai-profile'}; q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}',headers=h)
+  h={'Accept':'application/vnd.github+json','User-Agent':'krishna-sai-profile'}
+  if token:h['Authorization']=f'Bearer {token}'
+  q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}',headers=h)
   with urllib.request.urlopen(q,timeout=20) as r:data=json.load(r)
+  q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}/repos?per_page=100&sort=updated',headers=h)
+  with urllib.request.urlopen(q,timeout=20) as r:data['repos']=json.load(r)
+  if not token:return data
   payload={'query':'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}','variables':{'login':CFG['username']}}; q=urllib.request.Request('https://api.github.com/graphql',data=json.dumps(payload).encode(),headers={**h,'Content-Type':'application/json'})
   with urllib.request.urlopen(q,timeout=20) as r:data['contributions']=json.load(r).get('data',{}).get('user',{}).get('contributionsCollection',{}).get('contributionCalendar',{}).get('weeks',[])
   return data

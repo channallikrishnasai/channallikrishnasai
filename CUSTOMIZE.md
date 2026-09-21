@@ -7,7 +7,7 @@ python scripts/generate_all.py
 python scripts/validate.py
 ```
 
-`projects` intentionally starts empty because the source profile repository was unavailable at build time. A project entry has this shape:
+`projects` contains public projects selected for the constellation. A project entry has this shape:
 
 ```json
 {
@@ -18,7 +18,7 @@ python scripts/validate.py
 }
 ```
 
-The included GitHub Actions workflow refreshes assets weekly and on demand. It uses the ephemeral `GITHUB_TOKEN`; no token, key, or credential is stored in the repository. The activity panel only displays API results it actually receives. The contribution panel remains explicitly data-safe until a real GraphQL contribution fetcher is configured.
+The included GitHub Actions workflow refreshes assets weekly and on demand. It uses the ephemeral `GITHUB_TOKEN`; no token, key, or credential is stored in the repository. Public repository and account data are fetched from GitHub's REST API; contribution history is fetched through GraphQL only when the workflow token is available.
 
 The generator writes the live visual world to `assets/nexus/`. The old profile-assets directory is retained only as a historical foundation; the README references only the NEXUS system.
 

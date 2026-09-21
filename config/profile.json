@@ -2,11 +2,31 @@
   "username": "channallikrishnasai",
   "name": "Krishna Sai Channalli",
   "role": "Computer Science Engineer",
-  "focus": ["AI Systems", "Agent Engineering", "Computer Vision", "Voice AI", "Automation", "Python", "Full-stack Engineering", "Experimental Systems"],
-  "stack": ["Python", "AI Agents", "Computer Vision", "Voice AI", "Automation"],
+  "focus": ["AI Systems", "Agent Engineering", "Automation", "Full-stack Engineering", "Experimental Systems"],
+  "technologies": ["Python", "TypeScript", "Next.js", "React", "FastAPI", "PostgreSQL", "Prisma", "Docker"],
   "links": {
     "github": "https://github.com/channallikrishnasai",
     "linkedin": "https://www.linkedin.com/in/krishna-sai-channalli-4528262b3"
   },
-  "projects": []
+  "projects": [
+    {
+      "name": "OPERO",
+      "description": "Operations dashboard foundation for orders, incidents, inventory, tasks, and audit activity.",
+      "technology": "Next.js · Prisma · PostgreSQL",
+      "url": "https://github.com/channallikrishnasai/OPERO"
+    },
+    {
+      "name": "LifeOS AI",
+      "description": "AI-powered platform for tasks, goals, habits, notes, learning, and startup planning.",
+      "technology": "FastAPI · React · PostgreSQL · Redis",
+      "url": "https://github.com/channallikrishnasai/LifeOS-AI"
+    },
+    {
+      "name": "Rakva",
+      "description": "AI-powered disaster intelligence and recovery planning platform.",
+      "technology": "Next.js · React · Three.js",
+      "url": "https://github.com/channallikrishnasai/Rakva"
+    }
+  ],
+  "visual": {"seed": 260922, "theme": "NEXUS"}
 }
