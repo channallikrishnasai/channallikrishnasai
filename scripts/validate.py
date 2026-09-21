@@ -15,7 +15,7 @@ for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|png|gif))',readme):
 for path, limit in ((ROOT/'assets/generated/nexus-hero.gif', 5_000_000), (ROOT/'assets/projects/opero-core.png', 4_000_000), (ROOT/'assets/terminal/nexus-terminal.gif', 2_000_000)):
     if path.is_file() and path.stat().st_size > limit: errors.append(f'Asset exceeds budget: {path.relative_to(ROOT)}')
 if not (ROOT/'.github/workflows/update-profile.yml').is_file(): errors.append('Missing update workflow')
-expected = {"system-awakening.svg", "technology-field.svg", "project-constellation.svg", "lifeos-system.svg", "engineering-loop.svg", "connection-gateway.svg", "github-activity.svg", "contribution-matrix.svg"}
+expected = {"hero.svg", "technology-matrix.svg", "technology-network.svg", "project-systems.svg", "opero-architecture.svg", "vaultiq-system.svg", "lifeos-system.svg", "prism-system.svg", "automation-engine.svg", "terminal.svg", "github-activity.svg", "contribution-matrix.svg", "engineering-loop.svg", "connection-gateway.svg"}
 actual = {path.name for path in (ROOT / "assets/nexus").glob("*.svg")} if (ROOT / "assets/nexus").is_dir() else set()
 if expected - actual: errors.append(f'Missing NEXUS assets: {", ".join(sorted(expected - actual))}')
 public_text = readme + "\n" + "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / "assets/nexus").glob("*.svg"))

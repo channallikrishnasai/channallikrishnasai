@@ -1,63 +1,61 @@
-<p align="center"><img src="assets/generated/nexus-hero.gif" width="100%" alt="Cinematic NEXUS motion loop for Krishna Sai Channalli's engineering portfolio." /></p>
+<p align="center"><img src="assets/nexus/hero.svg" width="100%" alt="Animated dimensional NEXUS typography for Krishna Sai Channalli, AI systems, agents, automation, and engineering." /></p>
 
 <div align="center">
 
-# Krishna Sai Channalli
+# N E X U S
 
-**AI systems · agent engineering · automation**
+## Krishna Sai Channalli
 
-Computer Science Engineer building intelligent systems across AI, agents, vision, voice, automation, and full-stack engineering.
+**Computer Science Engineer**<br />
+AI systems · agents · automation · engineering
 
 </div>
 
-<p align="center"><img src="assets/nexus/system-awakening.svg" width="900" alt="NEXUS system awakening: AI runtime, agent engine, vision, voice, automation, and system core activate around one central core." /></p>
+<p align="center"><img src="assets/nexus/technology-matrix.svg" width="100%" alt="Animated technical matrix of verified languages, AI, frontend, backend, data, automation, infrastructure, and tooling." /></p>
 
-### Engineering stack
+<p align="center"><img src="assets/nexus/technology-network.svg" width="100%" alt="Compact animated technology network representing the conceptual engineering ecosystem." /></p>
 
-<p align="center"><img src="assets/nexus/technology-field.svg" width="100%" alt="Animated NEXUS neural technology field grouping verified languages, AI, frontend, backend, data, automation, infrastructure, and tooling." /></p>
+### Engineering domains
 
-### System domains
+`AI systems` · `Agent systems` · `Automation` · `Computer vision` · `Voice systems` · `Full-stack systems`
 
-`AI agents` · `Intelligent applications` · `Computer vision` · `Voice systems` · `Automation` · `Developer infrastructure`
+<p align="center"><img src="assets/nexus/project-systems.svg" width="100%" alt="Animated technical table of The-Opero, VaultIQ AI, LifeOS AI, and PRISM, linked to their public repositories." /></p>
 
-### Selected systems
+### The-Opero // Autonomous Operator Core
 
-<p align="center"><img src="assets/nexus/project-constellation.svg" width="900" alt="Animated constellation linking the verified public systems The-Opero, VaultIQ AI, LifeOS AI, and PRISM." /></p>
+**[The-Opero](https://github.com/channallikrishnasai/The-Opero)** — Open Personal Execution &amp; Response Operator: a local desktop AI operator using Python, PyQt6, Gemini integration, local execution modules, dashboard, plugins, and a WhatsApp bridge.
 
-**[VaultIQ AI](https://github.com/channallikrishnasai/vaultiq-ai)** — AI-powered personal finance for budgeting, investing, fraud protection, goals, and scenario planning.<br />
-`Next.js 16` · `TypeScript` · `Prisma` · `Tailwind CSS` · multiple AI providers
+<p align="center"><img src="assets/nexus/opero-architecture.svg" width="100%" alt="Animated The-Opero technical architecture: input, intelligence, local tools, automation, research, execution, verification, and result." /></p>
 
-<p align="center"><img src="assets/source/vaultiq/background.png" width="900" alt="Repository-native VaultIQ AI background asset." /></p>
+<p align="center"><a href="https://github.com/channallikrishnasai/The-Opero"><img src="assets/source/the-opero/pipeline.svg" width="900" alt="Repository-native The-Opero execution pipeline." /></a></p>
 
-**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)** — life-management platform for projects, goals, habits, learning, and startup planning.<br />
-`FastAPI` · `React` · `PostgreSQL` · `Redis` · `WebSockets` · specialized AI agents
+### VaultIQ AI // Financial Intelligence
 
-<p align="center"><img src="assets/nexus/lifeos-system.svg" width="900" alt="LifeOS system orbit visualizing verified career, life, planner, skill, study, startup, and future AI workspace domains." /></p>
+**[VaultIQ AI](https://github.com/channallikrishnasai/vaultiq-ai)** — personal-finance platform for budgeting, investing, fraud protection, goals, and scenario planning.
 
-**[PRISM / Entire Graph](https://github.com/channallikrishnasai/PRISM)** — coding-agent plugin for local repository maps, ranked code search, and change-impact navigation.<br />
-`Go` · `tree-sitter` · local indexing · CLI plugin architecture
+<p align="center"><img src="assets/nexus/vaultiq-system.svg" width="100%" alt="VaultIQ technical system map for expenses, goals, portfolio, budget, investing, and fraud-protection functions." /></p>
 
-<p align="center"><a href="https://github.com/channallikrishnasai/PRISM"><img src="assets/source/prism/cover.png" width="900" alt="Actual PRISM / Entire Graph repository cover image." /></a></p>
+### LifeOS AI // Life-System Map
 
-### Flagship — The-Opero
+**[LifeOS AI](https://github.com/channallikrishnasai/LifeOS-AI)** — AI life-management platform for projects, goals, habits, learning, and startup planning.
 
-**[The-Opero](https://github.com/channallikrishnasai/The-Opero)** is an Open Personal Execution &amp; Response Operator: a local desktop AI operator with Python, PyQt6, Gemini integration, local execution modules, dashboard, plugins, and a WhatsApp bridge.
+<p align="center"><img src="assets/nexus/lifeos-system.svg" width="100%" alt="LifeOS technical system map of career, life, planner, skill, study, and startup domains." /></p>
 
-<p align="center"><a href="https://github.com/channallikrishnasai/The-Opero"><img src="assets/source/the-opero/hero.svg" width="100%" alt="Actual animated hero asset from The-Opero repository." /></a></p>
+### PRISM // Code Intelligence
 
-<p align="center"><img src="assets/source/the-opero/pipeline.svg" width="900" alt="Actual The-Opero pipeline asset from its repository." /></p>
+**[PRISM / Entire Graph](https://github.com/channallikrishnasai/PRISM)** — local repository maps, ranked code search, and change-impact navigation for coding agents.
 
-<p align="center"><img src="assets/nexus/github-activity.svg" width="900" alt="GitHub activity signal based on verified public account data." /><img src="assets/nexus/contribution-matrix.svg" width="900" alt="Contribution terrain generated from verified GitHub contribution data when available." /></p>
+<p align="center"><img src="assets/nexus/prism-system.svg" width="100%" alt="PRISM technical system map of repository analysis, tree-sitter, local indexing, search, maps, and impact navigation." /></p>
 
-### Now building
+<p align="center"><img src="assets/nexus/automation-engine.svg" width="100%" alt="Animated automation engine signal pipeline: trigger, detect, understand, decide, execute, verify, and report." /></p>
 
-**The-Opero** — local desktop AI execution and response automation.
+<p align="center"><img src="assets/nexus/github-activity.svg" width="100%" alt="GitHub technical signal based on verified public account data." /><img src="assets/nexus/contribution-matrix.svg" width="100%" alt="Dimensional contribution matrix based on verified GitHub contribution data." /></p>
 
-<p align="center"><img src="assets/terminal/nexus-terminal.gif" width="900" alt="Animated terminal showing profile focus, current system, and status." /></p>
+<p align="center"><img src="assets/nexus/engineering-loop.svg" width="100%" alt="Engineering loop: build, experiment, measure, automate, verify, and ship." /></p>
 
-<p align="center"><img src="assets/nexus/engineering-loop.svg" width="900" alt="Engineering loop: build, experiment, measure, automate, verify, and ship." /></p>
+<p align="center"><img src="assets/nexus/terminal.svg" width="100%" alt="Animated NEXUS terminal showing profile, focus, current project, and verified project scan." /></p>
 
-<p align="center"><img src="assets/nexus/connection-gateway.svg" width="900" alt="NEXUS connection gateway linking to Krishna Sai Channalli's GitHub and LinkedIn." /></p>
+<p align="center"><img src="assets/nexus/connection-gateway.svg" width="100%" alt="NEXUS connection gateway with GitHub and LinkedIn links." /></p>
 
 <div align="center">
 
