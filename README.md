@@ -1,53 +1,39 @@
 <p align="center">
-  <img src="assets/profile/hero.svg" alt="Krishna Sai Channalli — AI Systems and Agent Engineering" width="100%" />
+  <img src="assets/nexus/hero.svg" width="100%" alt="Krishna Sai Channalli: AI Systems and Agent Engineering. Building systems that see, speak, think, and act." />
 </p>
-
-<p align="center"><i>Building intelligent systems that see, speak, think, and act.</i></p>
 
 <p align="center">
-  <img src="assets/profile/system-boot.svg" alt="System status: AI runtime, agent engine, computer vision, voice interface, automation layer, and development core operational" width="640" />
+  <img src="assets/nexus/boot-sequence.svg" width="900" alt="NEXUS system activation with AI runtime, agent engine, vision engine, voice engine, automation, and system core operational." />
 </p>
-
-## Identity
 
 <p align="center">
-  <img src="assets/profile/identity.svg" alt="Abstract digital identity visualization for Krishna Sai Channalli, Computer Science Engineer" width="640" />
+  <img src="assets/nexus/identity.svg" width="900" alt="Digital identity chamber for Krishna Sai Channalli, Computer Science Engineer focused on AI, agents, vision, automation, and systems." />
 </p>
-
-## Technology Network
 
 <p align="center">
-  <img src="assets/profile/network.svg" alt="Technology focus network: Python, AI agents, computer vision, voice AI, and automation" width="640" />
+  <img src="assets/nexus/neural-constellation.svg" width="900" alt="A dimensional neural constellation representing AI, agents, vision, voice, automation, Python, systems, web, and databases." />
 </p>
-
-## Mission Control
 
 <p align="center">
-  <img src="assets/profile/missions.svg" alt="Mission Control project showcase; only verified project data is displayed" width="900" />
+  <img src="assets/nexus/mission-control.svg" width="900" alt="Mission Control. Public project modules appear only after verified project data is configured." />
 </p>
-
-## GitHub Activity
 
 <p align="center">
-  <img src="assets/stats/activity.svg" alt="Live public GitHub account activity, refreshed by workflow" width="640" />
-  <img src="assets/stats/contribution-matrix.svg" alt="Contribution matrix shown in data-safe mode until real GitHub contribution data is configured" width="640" />
+  <img src="assets/nexus/opero-core.svg" width="900" alt="OPERO core visualization. Project-specific capabilities are intentionally withheld pending public project verification." />
 </p>
 
-## Terminal
+<p align="center">
+  <img src="assets/nexus/github-activity.svg" width="900" alt="GitHub activity signal field. Only authenticated, verified public GitHub data is displayed." />
+  <img src="assets/nexus/contribution-matrix.svg" width="900" alt="Dimensional contribution signal matrix based only on verified GitHub contribution data." />
+</p>
 
-```text
-KRISHNA.SAI // TERMINAL
-$ whoami   → Krishna Sai Channalli
-$ focus    → AI Systems / Agent Engineering
-$ build    → intelligent, experimental systems
-$ status   → ONLINE
-```
+<p align="center">
+  <img src="assets/nexus/terminal.svg" width="900" alt="Terminal: Krishna Sai Channalli, focused on AI systems and agent engineering; building intelligent experimental systems; status online." />
+</p>
 
-## Engineering Philosophy
-
-Build deliberately. Experiment against evidence. Automate repeatable work. Verify before shipping.
-
-## Establish Connection
+<p align="center">
+  <img src="assets/nexus/engineering-philosophy.svg" width="900" alt="Engineering philosophy: build, experiment, measure, automate, verify, ship." />
+</p>
 
 <p align="center">
   <a href="https://github.com/channallikrishnasai">GitHub</a> ·
@@ -55,5 +41,5 @@ Build deliberately. Experiment against evidence. Automate repeatable work. Verif
 </p>
 
 <p align="center">
-  <img src="assets/profile/connect.svg" alt="Connection portal linking to Krishna Sai Channalli's GitHub and LinkedIn" width="640" />
+  <img src="assets/nexus/connection.svg" width="900" alt="Connection gateway with links to Krishna Sai Channalli's GitHub and LinkedIn." />
 </p>

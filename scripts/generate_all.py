@@ -1,87 +1,65 @@
 #!/usr/bin/env python3
-"""Generate profile SVGs. Standard library only; optionally fetches live GitHub data."""
+"""Render Krishna Sai // NEXUS profile visuals with Python's standard library."""
 from __future__ import annotations
-import argparse, json, os, re, sys, urllib.request
-from datetime import datetime, timezone
+import argparse,json,math,os,sys,urllib.request
+from datetime import datetime,timezone
 from pathlib import Path
-from xml.etree import ElementTree as ET
-
-ROOT = Path(__file__).resolve().parents[1]
-CFG = json.loads((ROOT / "config/profile.json").read_text(encoding="utf-8"))
-PROFILE, STATS = ROOT / "assets/profile", ROOT / "assets/stats"
-
-def esc(value: object) -> str:
-    return str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-
-def svg(title: str, width: int, height: int, body: str) -> str:
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc"><title id="title">{esc(title)}</title><desc id="desc">{esc(title)} — a personal developer-profile visualization.</desc><defs><radialGradient id="atmo"><stop stop-color="#0a3156" stop-opacity=".7"/><stop offset=".55" stop-color="#07111f" stop-opacity=".45"/><stop offset="1" stop-color="#02040a"/></radialGradient><linearGradient id="line" x2="1" y2="1"><stop stop-color="#50e6ff"/><stop offset="1" stop-color="#8a6cff"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 0h8" stroke="#9defff" stroke-opacity=".045"/></pattern></defs><rect width="100%" height="100%" rx="18" fill="url(#atmo)"/><rect width="100%" height="100%" rx="18" fill="url(#scan)"/>{body}</svg>'''
-
-def write(path: Path, content: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True); path.write_text(content, encoding="utf-8")
-
-def hero() -> str:
-    particles = ''.join(f'<circle cx="{(i*83)%1160+20}" cy="{(i*47)%500+20}" r="{1+i%3}" fill="#8defff" opacity=".{2+i%5}"><animate attributeName="opacity" values=".15;.8;.15" dur="{4+i%5}s" repeatCount="indefinite"/></circle>' for i in range(42))
-    rings = ''.join(f'<ellipse cx="600" cy="285" rx="{120+i*42}" ry="{38+i*15}" fill="none" stroke="url(#line)" stroke-opacity=".{7-i}" stroke-width="1"><animateTransform attributeName="transform" type="rotate" from="0 600 285" to="360 600 285" dur="{20+i*8}s" repeatCount="indefinite"/></ellipse>' for i in range(3))
-    return svg("Krishna Sai Channalli — developer profile",1200,620,f'''{particles}<path d="M0 530H1200M100 620l250-240m100 240 150-240m100 240 0-240m100 240-150-240m500 240-250-240" stroke="#44dfff" stroke-opacity=".16"/><g filter="url(#glow)">{rings}<circle cx="600" cy="285" r="78" fill="#061b31" stroke="#66e5ff"/><circle cx="600" cy="285" r="35" fill="#9df5ff"><animate attributeName="r" values="30;39;30" dur="3s" repeatCount="indefinite"/></circle></g><g fill="#dffaff" font-family="Inter,Arial,sans-serif" text-anchor="middle"><text x="600" y="130" font-size="14" letter-spacing="6" opacity=".7">PERSONAL DEVELOPER PROFILE</text><text x="600" y="455" font-size="42" font-weight="700" letter-spacing="4">KRISHNA SAI CHANNALLI</text><text x="600" y="488" font-size="15" letter-spacing="3" fill="#75e9ff">AI SYSTEMS / AGENT ENGINEERING</text><text x="600" y="550" font-size="12" letter-spacing="2" opacity=".7">BUILDING INTELLIGENT SYSTEMS THAT SEE · SPEAK · THINK · ACT</text></g>''')
-
-def boot() -> str:
-    rows = ["AI RUNTIME", "AGENT ENGINE", "COMPUTER VISION", "VOICE INTERFACE", "AUTOMATION LAYER", "DEVELOPMENT CORE"]
-    line = ''.join(f'<g opacity="0"><text x="65" y="{110+i*42}" fill="#87f4c0" font-size="17">✓</text><text x="96" y="{110+i*42}" fill="#dffaff" font-size="15">{r}</text><text x="450" y="{110+i*42}" fill="#87f4c0" font-size="13">ONLINE</text><animate attributeName="opacity" to="1" begin="{i*.35}s" dur=".25s" fill="freeze"/></g>' for i,r in enumerate(rows))
-    return svg("Krishna Sai Channalli system status",640,390,f'<text x="65" y="62" fill="#75e9ff" font-family="monospace" font-size="14" letter-spacing="2">KRISHNA.SAI // SYSTEM STATUS</text><rect x="45" y="78" width="550" height="278" rx="10" fill="#020812" stroke="#1d6f9c"/>{line}<path d="M65 330h510" stroke="#2fbbd9" stroke-opacity=".45"/><text x="65" y="348" fill="#87f4c0" font-family="monospace" font-size="13">SYSTEM STATUS: OPERATIONAL</text>')
-
-def identity() -> str:
-    return svg("Digital identity for Krishna Sai Channalli",640,370,'''<g transform="translate(150 190)" fill="none" stroke="url(#line)"><circle r="105" stroke-opacity=".35"/><circle r="78" stroke-dasharray="4 10"/><path d="M-42 45c0-50 84-50 84 0M-34-25a34 34 0 1 1 68 0 34 34 0 0 1-68 0" stroke-width="3"/><ellipse rx="135" ry="42" transform="rotate(-20)" opacity=".6"><animateTransform attributeName="transform" type="rotate" from="-20 0 0" to="340 0 0" dur="18s" repeatCount="indefinite"/></ellipse></g><g font-family="Inter,Arial,sans-serif"><text x="305" y="112" fill="#75e9ff" font-size="13" letter-spacing="3">DIGITAL IDENTITY</text><text x="305" y="166" fill="#effcff" font-size="26" font-weight="700">KRISHNA SAI</text><text x="305" y="197" fill="#effcff" font-size="26" font-weight="700">CHANNALLI</text><text x="305" y="236" fill="#b9d9e8" font-size="15">Computer Science Engineer</text><text x="305" y="268" fill="#75e9ff" font-size="14">AI · AGENTS · VISION · AUTOMATION</text><text x="305" y="314" fill="#88a9ba" font-size="12">ABSTRACT IDENTITY SIGNAL — NO PORTRAIT SOURCE PROVIDED</text></g>''')
-
-def network() -> str:
-    nodes=[("PYTHON",320,190),("AI AGENTS",475,100),("COMPUTER\nVISION",560,235),("VOICE AI",420,305),("AUTOMATION",225,305)]
-    links=''.join(f'<path d="M320 190L{x} {y}" stroke="#4ae3ff" stroke-opacity=".35"/>' for _,x,y in nodes[1:])
-    items=''.join(f'<g><circle cx="{x}" cy="{y}" r="42" fill="#06182a" stroke="url(#line)"/><text x="{x}" y="{y-4 if "\\n" in n else y+5}" fill="#e5fbff" font-family="monospace" font-size="11" text-anchor="middle">{n.replace("\\n","</text><text x=\"%s\" y=\"%s\">"%(x,y+11))}</text></g>' for n,x,y in nodes)
-    return svg("Technology focus network",640,390,f'<text x="42" y="48" fill="#75e9ff" font-family="monospace" font-size="13" letter-spacing="3">TECHNOLOGY NETWORK // VERIFIED FOCUS</text>{links}{items}<text x="42" y="360" fill="#88a9ba" font-family="monospace" font-size="11">Configured from profile.json. Add only technologies supported by public work.</text>')
-
-def missions() -> str:
-    projects=CFG.get("projects",[])
-    if not projects: return svg("Mission Control",900,250,'<text x="55" y="65" fill="#75e9ff" font-family="monospace" font-size="14" letter-spacing="3">MISSION CONTROL</text><rect x="45" y="90" width="810" height="110" rx="12" fill="#05101d" stroke="#23698e"/><text x="70" y="140" fill="#e5fbff" font-family="Inter,Arial" font-size="18">MISSION QUEUE AWAITING VERIFIED PROJECT DATA</text><text x="70" y="172" fill="#88a9ba" font-family="monospace" font-size="12">Add public repositories to config/profile.json, then regenerate.</text>')
-    cards=''.join(f'<g transform="translate({40+i*285} 70)"><rect width="250" height="190" rx="12" fill="#05101d" stroke="#23698e"/><text x="22" y="35" fill="#75e9ff" font-family="monospace" font-size="11">MISSION {i+1:02}</text><text x="22" y="73" fill="#effcff" font-family="Inter,Arial" font-size="20">{esc(p["name"])}</text><text x="22" y="108" fill="#b9d9e8" font-family="Inter,Arial" font-size="12">{esc(p["description"])}</text><text x="22" y="158" fill="#87f4c0" font-family="monospace" font-size="11">STATUS: {esc(p.get("status","ACTIVE"))}</text></g>' for i,p in enumerate(projects[:3]))
-    return svg("Mission Control",900,300,f'<text x="40" y="40" fill="#75e9ff" font-family="monospace" font-size="14" letter-spacing="3">MISSION CONTROL</text>{cards}')
-
-def github_data(token: str | None) -> dict | None:
-    if not token: return None
-    req=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}',headers={"Authorization":f"Bearer {token}","Accept":"application/vnd.github+json","User-Agent":"profile-svg-generator"})
-    try:
-        with urllib.request.urlopen(req,timeout=20) as response: data = json.load(response)
-        query = {"query": "query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}", "variables": {"login": CFG["username"]}}
-        graph = urllib.request.Request('https://api.github.com/graphql', data=json.dumps(query).encode(), headers={"Authorization":f"Bearer {token}", "Content-Type":"application/json", "User-Agent":"profile-svg-generator"})
-        with urllib.request.urlopen(graph,timeout=20) as response: data["contributions"] = json.load(response).get("data",{}).get("user",{}).get("contributionsCollection",{}).get("contributionCalendar",{}).get("weeks",[])
-        return data
-    except Exception as err:
-        print(f'warning: live GitHub data unavailable: {err}',file=sys.stderr); return None
-
-def activity(data: dict | None) -> str:
-    if not data: return svg("GitHub activity status",640,230,'<text x="45" y="60" fill="#75e9ff" font-family="monospace" font-size="14">GITHUB ACTIVITY // LIVE DATA PENDING</text><text x="45" y="115" fill="#dffaff" font-family="Inter,Arial" font-size="18">No authenticated public-data snapshot is available.</text><text x="45" y="150" fill="#88a9ba" font-family="monospace" font-size="12">The scheduled workflow refreshes this panel with GitHub API data.</text>')
-    rows=[("PUBLIC REPOSITORIES",data.get("public_repos",0)),("FOLLOWERS",data.get("followers",0)),("PUBLIC GISTS",data.get("public_gists",0))]
-    body=''.join(f'<text x="60" y="{110+i*35}" fill="#b9d9e8" font-family="monospace" font-size="13">{k}</text><text x="510" y="{110+i*35}" fill="#87f4c0" font-family="monospace" font-size="15">{v}</text>' for i,(k,v) in enumerate(rows))
-    return svg("Live GitHub public account activity",640,250,f'<text x="60" y="58" fill="#75e9ff" font-family="monospace" font-size="14">GITHUB ACTIVITY // PUBLIC API SNAPSHOT</text>{body}<text x="60" y="218" fill="#88a9ba" font-family="monospace" font-size="11">REFRESHED {datetime.now(timezone.utc).strftime("%Y-%m-%d UTC")}</text>')
-
-def matrix(data: dict | None) -> str:
-    weeks = (data or {}).get("contributions", [])
-    if not weeks:
-        return svg("Contribution matrix awaiting verified GitHub data",640,180,'<text x="45" y="40" fill="#75e9ff" font-family="monospace" font-size="13">CONTRIBUTION MATRIX // DATA-SAFE MODE</text><text x="45" y="92" fill="#dffaff" font-family="Inter,Arial" font-size="16">No contribution data has been fetched.</text><text x="45" y="125" fill="#88a9ba" font-family="monospace" font-size="11">The scheduled workflow uses GitHub GraphQL to render actual contribution counts.</text>')
-    max_count = max((d.get("contributionCount",0) for w in weeks for d in w.get("contributionDays",[])), default=1) or 1
-    cells=[]
-    for x,week in enumerate(weeks[-48:]):
-        for y,day in enumerate(week.get("contributionDays",[])):
-            count=day.get("contributionCount",0); opacity=.12+.88*(count/max_count)
-            cells.append(f'<rect x="{44+x*11}" y="{62+y*15}" width="7" height="10" rx="2" fill="#50e6ff" opacity="{opacity:.2f}"><title>{esc(day.get("date"))}: {count} contributions</title></rect>')
-    return svg("Real GitHub contribution matrix",640,210,f'<text x="45" y="40" fill="#75e9ff" font-family="monospace" font-size="13">CONTRIBUTION MATRIX // LAST 48 WEEKS</text>{"".join(cells)}<text x="45" y="188" fill="#88a9ba" font-family="monospace" font-size="11">COLOR INTENSITY REPRESENTS ACTUAL DAILY CONTRIBUTION COUNT.</text>')
-
-def connect() -> str:
-    gh,li=CFG['links']['github'],CFG['links']['linkedin']
-    return svg("Connection portal",640,250,f'<text x="50" y="55" fill="#75e9ff" font-family="monospace" font-size="14" letter-spacing="3">ESTABLISH CONNECTION</text><rect x="50" y="85" width="250" height="100" rx="12" fill="#06182a" stroke="#2ba5cc"/><rect x="340" y="85" width="250" height="100" rx="12" fill="#06182a" stroke="#7967d9"/><a href="{esc(gh)}"><text x="80" y="125" fill="#effcff" font-family="Inter,Arial" font-size="18">GITHUB ↗</text><text x="80" y="153" fill="#88a9ba" font-family="monospace" font-size="10">@channallikrishnasai</text></a><a href="{esc(li)}"><text x="370" y="125" fill="#effcff" font-family="Inter,Arial" font-size="18">LINKEDIN ↗</text><text x="370" y="153" fill="#88a9ba" font-family="monospace" font-size="10">KRISHNA SAI CHANNALLI</text></a>')
-
-def main() -> None:
-    parser=argparse.ArgumentParser(); parser.add_argument('--token',default=os.getenv('GITHUB_TOKEN')); args=parser.parse_args()
-    for path,content in [(PROFILE/'hero.svg',hero()),(PROFILE/'system-boot.svg',boot()),(PROFILE/'identity.svg',identity()),(PROFILE/'network.svg',network()),(PROFILE/'missions.svg',missions()),(PROFILE/'connect.svg',connect())]: write(path,content)
-    data=github_data(args.token)
-    write(STATS/'activity.svg',activity(data)); write(STATS/'contribution-matrix.svg',matrix(data))
-    print('Generated 8 SVG assets.')
-if __name__ == '__main__': main()
+ROOT=Path(__file__).resolve().parents[1]; CFG=json.loads((ROOT/'config/profile.json').read_text()); NEXUS=ROOT/'assets/nexus'
+def e(v): return str(v).replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;')
+def t(x,y,s,z=11,c='#dffaff',a='start',sp=0): return f'<text x="{x}" y="{y}" fill="{c}" font-family="IBM Plex Mono,JetBrains Mono,monospace" font-size="{z}" text-anchor="{a}" letter-spacing="{sp}">{e(s)}</text>'
+def frame(title,w,h,body):
+ d='''<defs><radialGradient id="space"><stop stop-color="#10395e"/><stop offset=".43" stop-color="#071625"/><stop offset="1" stop-color="#02040a"/></radialGradient><radialGradient id="core"><stop stop-color="#fff"/><stop offset=".16" stop-color="#b5faff"/><stop offset=".45" stop-color="#39c8eb"/><stop offset="1" stop-color="#152e67" stop-opacity=".08"/></radialGradient><linearGradient id="beam"><stop stop-color="#54edff" stop-opacity="0"/><stop offset=".5" stop-color="#c1fcff"/><stop offset="1" stop-color="#9579ff" stop-opacity="0"/></linearGradient><filter id="bloom" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 .5H6" stroke="#b3f6ff" stroke-opacity=".035"/></pattern><clipPath id="clip"><rect width="100%" height="100%" rx="18"/></clipPath></defs>'''
+ return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title desc"><title id="title">{e(title)}</title><desc id="desc">{e(title)}. Animated NEXUS visual with a readable static state.</desc>{d}<g clip-path="url(#clip)"><rect width="100%" height="100%" fill="url(#space)"/><rect width="100%" height="100%" fill="url(#scan)"/>{body}</g></svg>'
+def stars(w,h,n=36): return ''.join(f'<circle cx="{17+(i*73)%(w-34)}" cy="{19+(i*47)%(h-38)}" r="{1+(i%3)*.35:.1f}" fill="#d7fbff" opacity=".{2+i%6}"><animate attributeName="opacity" values=".15;{.45+(i%3)/5:.2f};.15" dur="{5+i%7}s" repeatCount="indefinite"/></circle>' for i in range(n))
+def orbit(x,y,rx,ry,d,dash=''): return f'<ellipse cx="{x}" cy="{y}" rx="{rx}" ry="{ry}" fill="none" stroke="url(#beam)" stroke-width="1.4" stroke-dasharray="{dash}" opacity=".8"><animateTransform attributeName="transform" type="rotate" from="0 {x} {y}" to="360 {x} {y}" dur="{d}s" repeatCount="indefinite"/></ellipse>'
+def core(x,y,r=48): return f'<g filter="url(#bloom)"><circle cx="{x}" cy="{y}" r="{r*1.85}" fill="#287bc9" opacity=".11"><animate attributeName="r" values="{r*1.55};{r*2.05};{r*1.55}" dur="5s" repeatCount="indefinite"/></circle><circle cx="{x}" cy="{y}" r="{r}" fill="url(#core)"/><circle cx="{x}" cy="{y}" r="{r*.52}" fill="#e8ffff" opacity=".72"><animate attributeName="opacity" values=".45;1;.45" dur="3s" repeatCount="indefinite"/></circle></g>'
+def hero():
+ grid=''.join(f'<path d="M{i} 620L600 375" stroke="#5adfff" stroke-opacity=".12"/>' for i in range(0,1201,100))+''.join(f'<path d="M0 {440+i*28}H1200" stroke="#5adfff" stroke-opacity=".09"/>' for i in range(7)); rings=orbit(600,263,205,72,29,'18 8')+orbit(600,263,164,118,19,'4 11')+orbit(600,263,112,154,37,'42 13')
+ body=f'{stars(1200,620,58)}<path d="M0 395H1200" stroke="#4be5ff" stroke-opacity=".14"/>{grid}<path d="M410 220L790 306M430 310L770 215" stroke="url(#beam)" opacity=".35"/>{rings}{core(600,263,58)}<polygon points="600,168 651,263 600,358 549,263" fill="none" stroke="#b4f7ff" stroke-opacity=".55"/><polygon points="600,189 630,263 600,337 570,263" fill="#6cecff" fill-opacity=".1" stroke="#7deeff" stroke-opacity=".65"/>{t(54,64,"NEXUS // PERSONAL ENGINEERING UNIVERSE",11,"#78ecff",sp=2)}{t(54,84,"CORE: STABLE    SIGNAL: LOCKED",10,"#8bb3c5")}{t(1000,64,"NODE 01",10,"#78ecff")}{t(1000,84,"AI RUNTIME",10,"#8bb3c5")}<g text-anchor="middle"><text x="600" y="469" fill="#f1feff" font-family="Inter,system-ui,sans-serif" font-size="38" font-weight="700" letter-spacing="3">KRISHNA SAI CHANNALLI</text><text x="600" y="502" fill="#7cefff" font-family="monospace" font-size="14" letter-spacing="3">AI SYSTEMS / AGENT ENGINEERING</text><text x="600" y="552" fill="#a6c5d4" font-family="monospace" font-size="11" letter-spacing="2">BUILDING SYSTEMS THAT SEE · SPEAK · THINK · ACT</text></g><path d="M0 610H1200" stroke="#72eaff" stroke-opacity=".28" stroke-dasharray="10 1200"><animate attributeName="stroke-dashoffset" values="0;-1210" dur="8s" repeatCount="indefinite"/></path>'
+ return frame('Krishna Sai Channalli — NEXUS',1200,620,body)
+def boot():
+ names=['AI RUNTIME','AGENT ENGINE','VISION ENGINE','VOICE ENGINE','AUTOMATION','SYSTEM CORE']; pos=[(450,108),(594,168),(594,322),(450,382),(306,322),(306,168)]; nodes=''
+ for i,(n,(x,y)) in enumerate(zip(names,pos)): nodes+=f'<path d="M{x} {y}L450 245" stroke="url(#beam)" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;0;1;1" begin="{i*.45}s" dur="3.8s" fill="freeze"/></path><g opacity="0"><circle cx="{x}" cy="{y}" r="26" fill="#061b2a" stroke="#66eaff"/><circle cx="{x}" cy="{y}" r="7" fill="#a8faff" filter="url(#bloom)"/><animate attributeName="opacity" values="0;0;1;1" begin="{i*.45}s" dur="3.8s" fill="freeze"/></g>{t(x,y+48,n,10,"#bcefff","middle")}'
+ return frame('NEXUS system activation',900,470,f'{stars(900,470,35)}{t(46,52,"SYSTEM ACTIVATION // SEQUENCE 01",12,"#79edff",sp=2)}<circle cx="450" cy="245" r="163" fill="none" stroke="#4ee2ff" stroke-opacity=".14"/>{orbit(450,245,150,102,24,"12 10")}{nodes}{core(450,245,51)}{t(450,251,"NEXUS",16,"#06121d","middle",2)}{t(450,435,"NEXUS SYSTEM // OPERATIONAL",14,"#94f7c5","middle",2)}')
+def identity(): return frame('Krishna Sai Channalli digital identity',900,430,f'{stars(900,430,34)}<path d="M60 340L420 145 840 340" fill="none" stroke="#5ee8ff" stroke-opacity=".17"/><g transform="translate(270 218)">{orbit(0,0,146,64,23,"15 9")}{orbit(0,0,101,134,31,"4 11")}<circle r="116" fill="none" stroke="#75eaff" stroke-opacity=".3"/><path d="M-44 58c3-58 85-58 88 0M-35-22a35 35 0 1 1 70 0 35 35 0 0 1-70 0" fill="none" stroke="#b4faff" stroke-width="3"/><path d="M-128 0H128" stroke="#6deaff" stroke-opacity=".6"/></g>{t(522,108,"IDENTITY CHAMBER",12,"#7cefff",sp=3)}{t(522,158,"KRISHNA SAI",27,"#f1feff")}{t(522,193,"CHANNALLI",27,"#f1feff")}{t(522,241,"COMPUTER SCIENCE ENGINEER",13,"#b4d3df",sp=2)}{t(522,284,"AI · AGENTS · VISION",12,"#7cefff",sp=2)}{t(522,310,"AUTOMATION · SYSTEMS",12,"#7cefff",sp=2)}{t(522,358,"ABSTRACT SIGNAL / PORTRAIT NOT SUPPLIED",10,"#7f9aa9")}')
+def constellation():
+ nodes=[('AI',450,190,25,.95),('AGENTS',590,238,22,.86),('VISION',345,277,21,.75),('VOICE',535,370,19,.62),('AUTOMATION',268,382,18,.56),('PYTHON',648,120,17,.48),('SYSTEMS',225,135,15,.38),('WEB',695,315,14,.33),('DATABASES',174,300,13,.27)]
+ paths=''.join(f'<path d="M450 272L{x} {y}" stroke="url(#beam)" stroke-opacity="{op}" stroke-width="1.2" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{7+i}s" repeatCount="indefinite"/></path>' for i,(_,x,y,_,op) in enumerate(nodes)); dots=''.join(f'<g opacity="{op}"><circle cx="{x}" cy="{y}" r="{r}" fill="#061b2b" stroke="#78edff"/><circle cx="{x}" cy="{y}" r="4" fill="#b9fbff" filter="url(#bloom)"/>{t(x,y+r+17,n,10,"#dffaff","middle")}</g>' for n,x,y,r,op in nodes)
+ return frame('NEXUS neural constellation',900,520,f'{stars(900,520,52)}{t(46,52,"NEXUS NEURAL CONSTELLATION",12,"#7cefff",sp=3)}<ellipse cx="450" cy="272" rx="305" ry="135" fill="none" stroke="#5ce9ff" stroke-opacity=".18" transform="rotate(-10 450 272)"/>{orbit(450,272,238,105,28,"15 11")}{orbit(450,272,168,190,39,"4 13")}{paths}{core(450,272,47)}{t(450,278,"CORE",13,"#06131d","middle",2)}{dots}{t(46,484,"INNER: AI / AGENTS / VISION     MIDDLE: VOICE / AUTOMATION / PYTHON     OUTER: SYSTEMS / WEB / DATABASES",9,"#87a7b7")}')
+def missions(): return frame('Mission control — verified data pending',900,350,f'{stars(900,350,28)}{t(48,54,"MISSION CONTROL // HANGAR 01",12,"#7cefff",sp=3)}<path d="M80 294L450 94 820 294" fill="#081829" fill-opacity=".45" stroke="#64eaff" stroke-opacity=".4"/>{core(450,188,42)}{orbit(450,188,174,58,22,"18 10")}{t(450,270,"VERIFIED PROJECT RECORDS UNAVAILABLE",16,"#e5fbff","middle",2)}{t(450,300,"CONFIGURE PUBLIC REPOSITORIES IN profile.json TO ACTIVATE MISSION MODULES",10,"#91b0be","middle")}')
+def opero():
+ labels=['SPEAK','UNDERSTAND','INVESTIGATE','DECIDE','ACT','VERIFY','REPORT']; nodes=''.join(f'<g><circle cx="{450+int(172*math.cos(-math.pi/2+i*2*math.pi/7))}" cy="{238+int(104*math.sin(-math.pi/2+i*2*math.pi/7))}" r="18" fill="#061a2c" stroke="#67eaff"/>{t(450+int(172*math.cos(-math.pi/2+i*2*math.pi/7)),243+int(104*math.sin(-math.pi/2+i*2*math.pi/7)),n,8,"#dffaff","middle")}</g>' for i,n in enumerate(labels))
+ return frame('OPERO core — verification pending',900,475,f'{stars(900,475,35)}{t(48,54,"OPERO CORE // PROJECT VERIFICATION PENDING",12,"#7cefff",sp=2)}{orbit(450,238,172,104,18,"18 9")}{orbit(450,238,218,142,33,"4 13")}{nodes}{core(450,238,53)}{t(450,234,"OPERO",16,"#06131d","middle",2)}{t(450,258,"UNVERIFIED",9,"#06131d","middle")}{t(450,426,"AUTONOMOUS OPERATOR VISUAL ACTIVATES ONLY WHEN PUBLIC PROJECT DATA IS VERIFIED",10,"#91b0be","middle")}')
+def terminal():
+ lines=[('$ whoami','Krishna Sai Channalli'),('$ focus','AI Systems / Agent Engineering'),('$ build','Intelligent experimental systems'),('$ status','ONLINE')]; out=''.join(t(92,112+i*55,a,13,'#80efff')+t(92,136+i*55,b,12,'#d9f8ff') for i,(a,b) in enumerate(lines))
+ return frame('Krishna Sai Channalli terminal',900,390,f'{stars(900,390,24)}<path d="M62 72H838V330H62z" fill="#030b14" fill-opacity=".88" stroke="#5ce9ff" stroke-opacity=".55"/>{t(90,98,"KRISHNA.SAI // TERMINAL",12,"#7cefff",sp=2)}{out}<rect x="92" y="304" width="8" height="14" fill="#8ff8ff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
+def philosophy():
+ steps=['BUILD','EXPERIMENT','MEASURE','AUTOMATE','VERIFY','SHIP']; s=''.join(f'<g><circle cx="{120+i*132}" cy="180" r="27" fill="#071a2b" stroke="#65eaff"/>{t(120+i*132,185,v,10,"#dffaff","middle")}</g>' for i,v in enumerate(steps))
+ return frame('Engineering philosophy',900,300,f'{stars(900,300,24)}{t(46,52,"ENGINEERING PHILOSOPHY // CONTINUOUS SIGNAL",12,"#7cefff",sp=2)}<path d="M120 180H780" stroke="url(#beam)" stroke-width="3" stroke-dasharray="20 12"><animate attributeName="stroke-dashoffset" values="0;-128" dur="8s" repeatCount="indefinite"/></path>{s}{t(450,254,"A DELIBERATE LOOP: MAKE, TEST, OBSERVE, AND IMPROVE.",11,"#91b0be","middle",2)}')
+def activity(data):
+ if not data: return frame('GitHub activity — data unavailable',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB ACTIVITY // SIGNAL FIELD",12,"#7cefff",sp=2)}{core(450,160,38)}{orbit(450,160,210,70,25,"10 13")}{t(450,246,"DATA UNAVAILABLE",18,"#e5fbff","middle",2)}{t(450,276,"THE SCHEDULED WORKFLOW WILL RENDER VERIFIED GITHUB DATA WHEN AVAILABLE.",10,"#91b0be","middle")}')
+ vals=[('PUBLIC REPOSITORIES',data.get('public_repos',0)),('FOLLOWERS',data.get('followers',0)),('PUBLIC GISTS',data.get('public_gists',0))]; f=''.join(f'<circle cx="{260+i*190}" cy="170" r="46" fill="#061a2c" stroke="#63eaff"/>{t(260+i*190,166,v,22,"#f0feff","middle")}{t(260+i*190,200,k,9,"#91b0be","middle")}' for i,(k,v) in enumerate(vals)); return frame('Verified GitHub activity signal field',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB ACTIVITY // VERIFIED SIGNAL FIELD",12,"#7cefff",sp=2)}{f}{t(450,278,"REFRESHED "+datetime.now(timezone.utc).strftime("%Y-%m-%d UTC"),10,"#91b0be","middle")}')
+def contributions(data):
+ weeks=(data or {}).get('contributions',[])
+ if not weeks: return frame('GitHub contribution signal — data unavailable',900,250,f'{stars(900,250,25)}{t(48,54,"CONTRIBUTION SIGNAL // DIMENSIONAL MATRIX",12,"#7cefff",sp=2)}{t(450,138,"DATA UNAVAILABLE",18,"#e5fbff","middle",2)}{t(450,170,"REAL CONTRIBUTIONS WILL APPEAR AFTER A VERIFIED GRAPHQL REFRESH.",10,"#91b0be","middle")}')
+ mx=max((d.get('contributionCount',0) for w in weeks for d in w.get('contributionDays',[])),default=1) or 1; cells=[]
+ for x,w in enumerate(weeks[-48:]):
+  for y,d in enumerate(w.get('contributionDays',[])):
+   c=d.get('contributionCount',0); h=5+20*c/mx; cells.append(f'<rect x="{138+x*13}" y="{197-y*12-h}" width="8" height="{h:.1f}" fill="#5eeaff" opacity="{.12+.88*c/mx:.2f}"><title>{e(d.get("date"))}: {c} contributions</title></rect>')
+ return frame('Real GitHub contribution signal field',900,250,f'{t(48,54,"CONTRIBUTION SIGNAL // VERIFIED LAST 48 WEEKS",12,"#7cefff",sp=2)}<path d="M110 200H790" stroke="#5eeaff" stroke-opacity=".3"/>{"".join(cells)}{t(450,230,"COLUMN HEIGHT AND INTENSITY REPRESENT ACTUAL DAILY CONTRIBUTIONS",9,"#91b0be","middle")}')
+def connection():
+ gh,li=CFG['links']['github'],CFG['links']['linkedin']; return frame('Connection gateway',900,380,f'{stars(900,380,36)}{t(48,54,"CONNECTION GATEWAY",12,"#7cefff",sp=3)}{orbit(450,194,160,130,22,"18 12")}{orbit(450,194,123,156,31,"4 10")}{core(450,194,50)}<circle cx="450" cy="194" r="85" fill="none" stroke="#95f6ff" stroke-opacity=".55"/>{t(450,200,"CONNECT",15,"#06131d","middle",2)}<a href="{e(gh)}">{t(225,320,"GITHUB ↗",14,"#dffaff","middle",2)}</a><a href="{e(li)}">{t(675,320,"LINKEDIN ↗",14,"#dffaff","middle",2)}</a>')
+def github_data(token):
+ if not token:return None
+ try:
+  h={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','User-Agent':'krishna-sai-profile'}; q=urllib.request.Request(f'https://api.github.com/users/{CFG["username"]}',headers=h)
+  with urllib.request.urlopen(q,timeout=20) as r:data=json.load(r)
+  payload={'query':'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}','variables':{'login':CFG['username']}}; q=urllib.request.Request('https://api.github.com/graphql',data=json.dumps(payload).encode(),headers={**h,'Content-Type':'application/json'})
+  with urllib.request.urlopen(q,timeout=20) as r:data['contributions']=json.load(r).get('data',{}).get('user',{}).get('contributionsCollection',{}).get('contributionCalendar',{}).get('weeks',[])
+  return data
+ except Exception as err: print(f'warning: GitHub data unavailable: {err}',file=sys.stderr);return None
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));a=p.parse_args();d=github_data(a.token); assets={'hero.svg':hero(),'boot-sequence.svg':boot(),'identity.svg':identity(),'neural-constellation.svg':constellation(),'mission-control.svg':missions(),'opero-core.svg':opero(),'terminal.svg':terminal(),'engineering-philosophy.svg':philosophy(),'github-activity.svg':activity(d),'contribution-matrix.svg':contributions(d),'connection.svg':connection()}
+ for n,v in assets.items(): (NEXUS/n).parent.mkdir(parents=True,exist_ok=True);(NEXUS/n).write_text(v,encoding='utf-8')
+ print(f'Generated {len(assets)} NEXUS SVG assets.')
+if __name__=='__main__':main()

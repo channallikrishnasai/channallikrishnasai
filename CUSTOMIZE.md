@@ -1,4 +1,4 @@
-# Customizing your profile homepage
+# Customizing Krishna Sai // NEXUS
 
 All editorial content lives in `config/profile.json`. Update the name, focus, links, and only verified projects there, then run:
 
@@ -19,5 +19,7 @@ python scripts/validate.py
 ```
 
 The included GitHub Actions workflow refreshes assets weekly and on demand. It uses the ephemeral `GITHUB_TOKEN`; no token, key, or credential is stored in the repository. The activity panel only displays API results it actually receives. The contribution panel remains explicitly data-safe until a real GraphQL contribution fetcher is configured.
+
+The generator writes the live visual world to `assets/nexus/`. The old profile-assets directory is retained only as a historical foundation; the README references only the NEXUS system.
 
 The SVGs use only GitHub-friendly SVG/Markdown primitives. Animation is decorative; all important text remains present in the README as alt text or regular Markdown.
