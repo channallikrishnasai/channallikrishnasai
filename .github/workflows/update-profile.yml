@@ -13,7 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python scripts/generate_all.py
+      - run: pip install pillow numpy
+      - run: python scripts/render_3d.py
       - run: python scripts/validate.py
       - name: Commit refreshed assets
         run: |

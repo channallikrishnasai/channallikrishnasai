@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/generated/hero-3d.svg" width="100%" alt="Animated 3D typography — Krishna Sai Channalli" />
+  <img src="assets/generated/hero-3d.gif" width="100%" alt="Software-rendered 3D identity core — Krishna Sai Channalli" />
 </p>
 
 <div align="center">
@@ -103,7 +103,7 @@
 ## 03 / Automation
 
 <p align="center">
-  <img src="assets/generated/automation-3d.svg" width="100%" alt="Animated automation pipeline — trigger to result" />
+  <img src="assets/generated/automation-3d.gif" width="100%" alt="Software-rendered 3D automation pipeline — trigger to result" />
 </p>
 
 <table>

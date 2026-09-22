@@ -8,14 +8,19 @@ errors=[]
 for p in (ROOT/"assets").rglob("*.svg"):
     try: ET.parse(p)
     except ET.ParseError as e: errors.append(f"{p}: {e}")
-required = [ROOT/"assets/generated/hero-3d.svg", ROOT/"assets/generated/automation-3d.svg"]
+required = [ROOT/"assets/generated/hero-3d.gif", ROOT/"assets/generated/automation-3d.gif"]
 for p in required:
-    if not p.is_file(): errors.append(f"Missing required animated asset: {p.name}")
-for legacy in ("hero-depth.svg","technology-field.svg","project-constellation.svg","opero-loop.svg"):
+    if not p.is_file(): errors.append(f"Missing required 3D GIF: {p.name}")
+    elif p.stat().st_size < 10_000: errors.append(f"GIF too small (render failed?): {p.name}")
+for legacy in ("hero-3d.svg","automation-3d.svg","hero-depth.svg","technology-field.svg","project-constellation.svg","opero-loop.svg"):
     if (ROOT/"assets/generated"/legacy).is_file(): errors.append(f"Legacy SVG still present: {legacy}")
 readme=(ROOT/"README.md").read_text(encoding="utf-8")
-for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|jpg|png))',readme):
+for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|jpg|png|gif))',readme):
     if not (ROOT/ref).is_file(): errors.append(f"Missing README asset: {ref}")
+if ".svg" in readme and "assets/generated" in readme:
+    # generated section should not reference SVGs
+    if re.search(r'assets/generated/[^"\s]+\.svg', readme):
+        errors.append("README still references generated SVG")
 cfg=json.loads((ROOT/"config/profile.json").read_text(encoding="utf-8"))
 for project in cfg["projects"]:
     if not project[1].startswith("https://github.com/channallikrishnasai/"):

@@ -5,11 +5,12 @@ All editable identity, technology, project, and link data lives in `config/profi
 Run:
 
 ```bash
-python scripts/generate_all.py
+pip install pillow numpy
+python scripts/render_3d.py
 python scripts/validate.py
 ```
 
-The generator creates the dimensional SVGs under `assets/generated/`.
+The renderer software-rasterizes true 3D scenes (numpy z-buffer + Pillow) into looping GIFs under `assets/generated/` — no SVG.
 
 The supplied portrait files live under `assets/profile/`:
 - `krishna-sai.jpg` — primary profile image
