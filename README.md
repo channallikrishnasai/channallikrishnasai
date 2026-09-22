@@ -2,10 +2,6 @@
   <img src="assets/generated/hero-3d.svg" width="100%" alt="Animated 3D typography — Krishna Sai Channalli" />
 </p>
 
-<p align="center">
-  <img src="assets/profile/krishna-sai.jpg" width="200" alt="Krishna Sai Channalli" style="border-radius:50%;border:3px solid #38e8ff;box-shadow:0 0 24px #38e8ff55" />
-</p>
-
 <div align="center">
 
 # Krishna Sai Channalli
