@@ -1,78 +1,76 @@
 <p align="center">
-  <img src="assets/nexus/hero-depth.svg" width="100%" alt="NEXUS depth typography: Krishna Sai Channalli, Computer Science Engineer, AI systems, agents, and automation." />
+  <img src="assets/generated/hero-depth.svg" width="100%" alt="3D dimensional typography showing Krishna Sai Channalli and his engineering focus." />
+</p>
+
+<p align="center">
+  <img src="assets/profile/krishna-sai.jpg" width="220" alt="Krishna Sai Channalli portrait" />
 </p>
 
 <div align="center">
 
 # Krishna Sai Channalli
 
-Computer Science Engineer building intelligent systems across AI, agents, vision, voice, automation, and full-stack engineering.
+**Computer Science Engineer** building intelligent systems across AI, agents, vision, voice, automation, and full-stack engineering.
+
+[GitHub](https://github.com/channallikrishnasai) · [LinkedIn](https://www.linkedin.com/in/krishna-sai-channalli-4528262b3)
 
 </div>
 
-| SYSTEM | PROFILE STATE | FOCUS | CURRENT BUILD |
-| :-- | :-- | :-- | :-- |
-| NEXUS | Building | AI systems · agents · automation | [The-Opero](https://github.com/channallikrishnasai/The-Opero) |
+---
 
 ## 01 / Technology
 
 <p align="center">
-  <img src="assets/nexus/technology-wall.svg" width="100%" alt="Dimensional typographic wall showing selected verified technologies including Python, TypeScript, React, FastAPI, PostgreSQL, Docker, Gemini, Prisma, PyQt6, and OpenTelemetry." />
+  <img src="assets/generated/technology-field.svg" width="100%" alt="Dimensional technology field covering the full verified stack." />
 </p>
 
-### Technology matrix
+### Full technology stack
 
-| Domain | Verified public-repository stack |
+| Domain | Stack |
 | :-- | :-- |
-| Languages | Python · TypeScript · JavaScript · Rust · SQL · HTML · CSS |
-| AI | Google Gemini · OpenAI · OpenRouter · Groq · AI agents · Agent orchestration |
-| Frontend | React · Next.js · Vite · Tailwind CSS · Radix UI · Framer Motion · TanStack Router · TanStack Query · Zustand · Three.js · React Three Fiber · Drei |
-| Backend | FastAPI · Uvicorn · Node.js · Next.js API Routes · Axum |
-| Data | PostgreSQL · SQLite · Supabase · Prisma · SQLx · Redis |
-| Automation | PyQt6 · PyAutoGUI · Browser automation · WebSockets |
-| Infrastructure | Docker · Docker Compose · S3 · OCI · OpenTelemetry · Tempo · Loki · GitHub Actions |
-| Tooling | pytest · Ruff · Pydantic · Zod · Cargo · Clippy · just · cargo-watch |
+| **Languages** | Python · TypeScript · JavaScript · Rust · SQL · HTML · CSS |
+| **AI** | Google Gemini · OpenAI · OpenRouter · Groq · AI agents · Agent orchestration |
+| **Frontend** | React · Next.js · Vite · Tailwind CSS · Radix UI · Framer Motion · TanStack Router · TanStack Query · Zustand · Three.js · React Three Fiber · Drei |
+| **Backend** | FastAPI · Uvicorn · Node.js · Next.js API Routes · Axum |
+| **Data** | PostgreSQL · SQLite · Supabase · Prisma · SQLx · Redis |
+| **Automation** | PyQt6 · PyAutoGUI · Browser automation · WebSockets |
+| **Infrastructure** | Docker · Docker Compose · S3 · OCI · OpenTelemetry · Tempo · Loki · GitHub Actions |
+| **Tooling** | pytest · Ruff · Pydantic · Zod · Cargo · Clippy · just · cargo-watch |
 
 `AI agents` · `Intelligent applications` · `Computer vision` · `Voice systems` · `Automation` · `Developer infrastructure`
 
-## 02 / Project systems
+## 02 / Projects
 
-> **NEAR / THE-OPERO** — local desktop AI operator
->
-> **MID / VAULTIQ AI · LIFEOS AI** — financial intelligence and life-management systems
->
-> **FAR / PRISM** — local code intelligence and change navigation
+<p align="center">
+  <img src="assets/generated/project-constellation.svg" width="100%" alt="Dimensional constellation connecting The-Opero, VaultIQ AI, LifeOS AI, and PRISM / Entire Graph." />
+</p>
 
-| System | Verified purpose | Core stack | Repository |
+| Project | What it is | Stack | Source |
 | :-- | :-- | :-- | :-- |
-| The-Opero | Open Personal Execution &amp; Response Operator; a local desktop AI operator. | Python · PyQt6 · Gemini integration | [View →](https://github.com/channallikrishnasai/The-Opero) |
-| VaultIQ AI | Personal-finance platform for budgeting, investing, fraud protection, goals, and scenario planning. | Next.js 16 · TypeScript · Prisma · Tailwind CSS | [View →](https://github.com/channallikrishnasai/vaultiq-ai) |
-| LifeOS AI | AI life-management platform for projects, goals, habits, learning, and startup planning. | FastAPI · React · PostgreSQL · Redis · WebSockets | [View →](https://github.com/channallikrishnasai/LifeOS-AI) |
-| PRISM / Entire Graph | Coding-agent plugin for local repository maps, ranked code search, and change-impact navigation. | Go · tree-sitter · local indexing | [View →](https://github.com/channallikrishnasai/PRISM) |
+| **The-Opero** | Local desktop AI operator | Python · PyQt6 · Gemini | [Repository](https://github.com/channallikrishnasai/The-Opero) |
+| **VaultIQ AI** | AI-powered personal-finance platform | Next.js · TypeScript · Prisma · Tailwind CSS | [Repository](https://github.com/channallikrishnasai/vaultiq-ai) |
+| **LifeOS AI** | AI life-management platform | FastAPI · React · PostgreSQL · Redis · WebSockets | [Repository](https://github.com/channallikrishnasai/LifeOS-AI) |
+| **PRISM / Entire Graph** | Local code intelligence and change-impact navigation | Go · tree-sitter · local indexing | [Repository](https://github.com/channallikrishnasai/PRISM) |
 
 ## 03 / The-Opero
 
-**Open Personal Execution &amp; Response Operator** — a local desktop AI operator with Python, PyQt6, Gemini integration, local execution modules, a dashboard, plugins, and a WhatsApp bridge.
+**Open Personal Execution & Response Operator** — a local desktop AI operator with Python, PyQt6, Gemini integration, local execution modules, dashboard, plugins, and a WhatsApp bridge.
+
+<p align="center">
+  <img src="assets/generated/opero-loop.svg" width="100%" alt="Dimensional The-Opero execution loop: Speak, Understand, Investigate, Decide, Act, Verify, Report." />
+</p>
 
 ```text
-INPUT
+SPEAK
   ↓
 UNDERSTAND
   ↓
-INVESTIGATE  →  DECIDE  →  ACT
-                           ↓
-                        VERIFY
-                           ↓
-                        REPORT
+INVESTIGATE → DECIDE → ACT
+                         ↓
+                      VERIFY
+                         ↓
+                      REPORT
 ```
-
-| Layer | Repository-supported role |
-| :-- | :-- |
-| Input | Local operator inputs and commands |
-| Intelligence | Gemini integration and response processing |
-| Execution | Local execution modules, plugins, and desktop operator surface |
-| Communication | WhatsApp bridge included in the public project |
-| Response loop | Investigate → decide → act → verify → report |
 
 [Explore The-Opero →](https://github.com/channallikrishnasai/The-Opero)
 
@@ -80,46 +78,42 @@ INVESTIGATE  →  DECIDE  →  ACT
 
 ### VaultIQ AI
 
-Financial intelligence for budgeting, investing, fraud protection, goals, and scenario planning. Its public repository uses Next.js 16, TypeScript, Prisma, Tailwind CSS, and multiple AI providers.
+Personal-finance engineering covering budgeting, investing, fraud protection, goals, and scenario planning.
 
 ### LifeOS AI
 
-Life-management workspace spanning projects, goals, habits, learning, and startup planning, built with FastAPI, React, PostgreSQL, Redis, WebSockets, and specialized AI agents.
+A life-management workspace spanning projects, goals, habits, learning, and startup planning.
 
 ### PRISM / Entire Graph
 
-Code intelligence for coding agents: tree-sitter analysis, local indexing, ranked search, repository maps, and change-impact navigation.
+Local repository intelligence for code search, repository maps, and change-impact navigation.
 
 ## 05 / Automation
 
 ```text
-TRIGGER  →  UNDERSTAND  →  DECIDE  →  EXECUTE  →  VERIFY  →  RESULT
+TRIGGER → UNDERSTAND → DECIDE → EXECUTE → VERIFY → RESULT
 ```
 
 | System | Input | Processing | Output |
 | :-- | :-- | :-- | :-- |
 | Browser automation | Command | Browser control | Verified action |
-| Repository analysis | Code | Indexing and analysis | Search, maps, or navigation |
+| Repository analysis | Code | Indexing + analysis | Search / maps / navigation |
 | Financial intelligence | Financial data | AI analysis | Insight |
+| Voice systems | Spoken input | Speech + reasoning pipeline | Action / response |
 
-## 06 / GitHub signal
+## 06 / Engineering approach
 
-Public repositories, current activity, and contribution history remain directly available on [my GitHub profile](https://github.com/channallikrishnasai). The profile README does not duplicate or fabricate those live metrics.
+I build around a simple loop:
 
-## 07 / Terminal
+**Build → Experiment → Measure → Automate → Verify → Ship**
 
-```text
-nexus@krishna:~$ system
+The visual system in this profile is deliberately generated with Python and SVG rather than relying on JavaScript, external embeds, or a WebGL runtime that GitHub README pages cannot execute.
 
-profile     Krishna Sai Channalli
-focus       AI / Agents / Automation
-current     The-Opero
-stack       Python / TypeScript / Rust
-status      Ready
+## 07 / GitHub
 
-nexus@krishna:~$ _
-```
+Public repositories and contribution history are available directly on [GitHub](https://github.com/channallikrishnasai). This profile does not fabricate live metrics.
 
 ## Connect
 
-[GitHub](https://github.com/channallikrishnasai) · [LinkedIn](https://www.linkedin.com/in/krishna-sai-channalli-4528262b3)
+**GitHub:** https://github.com/channallikrishnasai  
+**LinkedIn:** https://www.linkedin.com/in/krishna-sai-channalli-4528262b3

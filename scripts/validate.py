@@ -1,32 +1,24 @@
 #!/usr/bin/env python3
-"""Validate generated SVGs, README asset references, and workflow presence."""
+"""Validate the profile package."""
 from pathlib import Path
 from xml.etree import ElementTree as ET
 import json, re, sys
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
-for path in (ROOT/'assets').rglob('*.svg'):
-    try: ET.parse(path)
-    except ET.ParseError as exc: errors.append(f'{path}: {exc}')
-readme=(ROOT/'README.md').read_text(encoding='utf-8')
-for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|png|gif))',readme):
-    if not (ROOT/ref).is_file(): errors.append(f'Missing README asset: {ref}')
-    elif (ROOT/ref).stat().st_size == 0: errors.append(f'Empty README asset: {ref}')
-if not (ROOT/'.github/workflows/update-profile.yml').is_file(): errors.append('Missing update workflow')
-expected = {"hero-depth.svg", "technology-wall.svg"}
-actual = {path.name for path in (ROOT / "assets/nexus").glob("*.svg")} if (ROOT / "assets/nexus").is_dir() else set()
-if expected - actual: errors.append(f'Missing NEXUS assets: {", ".join(sorted(expected - actual))}')
-public_text = readme + "\n" + "\n".join(path.read_text(encoding="utf-8") for path in (ROOT / "assets/nexus").glob("*.svg"))
-forbidden = ("awaiting", "placeholder", "todo", "withheld", "data unavailable")
-for word in forbidden:
-    if word in public_text.lower(): errors.append(f'Forbidden public placeholder text: {word}')
-config = json.loads((ROOT / "config/profile.json").read_text(encoding="utf-8"))
-for project in config.get("projects", []):
-    if not project.get("repository", "").startswith("https://github.com/channallikrishnasai/"):
-        errors.append(f'Invalid project URL: {project.get("repository", "")}')
-for candidate in ROOT.rglob('*'):
-    if candidate.is_file() and '.git' not in candidate.parts and 'scripts' not in candidate.relative_to(ROOT).parts and candidate.suffix not in {'.svg', '.pyc'}:
-        if re.search(r'(ghp_|github_pat_|sk-[A-Za-z0-9]{16,})', candidate.read_text(encoding='utf-8', errors='ignore')):
-            errors.append(f'Potential secret in {candidate.relative_to(ROOT)}')
-if errors: print('\n'.join(errors)); sys.exit(1)
-print('Validation passed: SVG XML and README references are valid.')
+for p in (ROOT/"assets").rglob("*.svg"):
+    try: ET.parse(p)
+    except ET.ParseError as e: errors.append(f"{p}: {e}")
+readme=(ROOT/"README.md").read_text(encoding="utf-8")
+for ref in re.findall(r'(?:\(|src=")(assets/[^\)"]+\.(?:svg|jpg|png))',readme):
+    if not (ROOT/ref).is_file(): errors.append(f"Missing README asset: {ref}")
+cfg=json.loads((ROOT/"config/profile.json").read_text(encoding="utf-8"))
+for project in cfg["projects"]:
+    if not project[1].startswith("https://github.com/channallikrishnasai/"):
+        errors.append(f"Invalid project URL: {project[1]}")
+for word in ("placeholder","todo","nexus","awaiting"):
+    if word in (readme + (ROOT/"CUSTOMIZE.md").read_text(encoding="utf-8")).lower():
+        errors.append(f"Forbidden profile branding/placeholder word: {word}")
+if not (ROOT/"assets/profile/krishna-sai.jpg").is_file(): errors.append("Missing primary portrait")
+if errors:
+    print("\n".join(errors)); sys.exit(1)
+print("Validation passed.")

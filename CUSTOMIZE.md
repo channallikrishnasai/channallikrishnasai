@@ -1,25 +1,20 @@
-# Customizing Krishna Sai // NEXUS
+# Customizing the profile
 
-All editorial content lives in `config/profile.json`. It is organized into identity, domains, technologies, projects, current build, links, and visual configuration. Update only verified information there, then run:
+All editable identity, technology, project, and link data lives in `config/profile.json`.
+
+Run:
 
 ```bash
 python scripts/generate_all.py
 python scripts/validate.py
 ```
 
-`projects` contains public projects selected for the interface. A project entry has this shape:
+The generator creates the dimensional SVGs under `assets/generated/`.
 
-```json
-{
-  "name": "Project name",
-  "repository": "https://github.com/channallikrishnasai/project-name",
-  "description": "A concise, verified description.",
-  "evidence": "Technologies and capabilities evidenced by the public repository."
-}
-```
+The supplied portrait files live under `assets/profile/`:
+- `krishna-sai.jpg` — primary profile image
+- `krishna-sai-editorial.jpg` — alternate supplied image
 
-The included GitHub Actions workflow regenerates the two typographic depth accents weekly and on demand. No token, key, or credential is stored in the repository.
+The profile intentionally has **no separate product/brand name**. The visual language is simply the engineering profile of Krishna Sai Channalli.
 
-The generator writes only the hero and technology-wall effects to `assets/nexus/`; the profile's project evidence, tables, terminal, and links live as readable Markdown. Repository-native visual evidence is kept under `assets/source/`.
-
-The SVGs use only GitHub-friendly SVG/Markdown primitives. Animation is decorative; all important text remains present in the README as alt text or regular Markdown.
+No API keys, tokens, or credentials are required.

@@ -5,48 +5,116 @@
     "role": "Computer Science Engineer",
     "statement": "Building intelligent systems across AI, agents, vision, voice, automation, and full-stack engineering."
   },
-  "domains": ["AI agents", "Intelligent applications", "Computer vision", "Voice systems", "Automation", "Developer infrastructure"],
+  "domains": [
+    "AI agents",
+    "Intelligent applications",
+    "Computer vision",
+    "Voice systems",
+    "Automation",
+    "Developer infrastructure"
+  ],
   "technologies": {
-    "languages": ["Python", "TypeScript", "JavaScript", "Rust", "SQL", "HTML", "CSS"],
-    "ai": ["Google Gemini", "OpenAI", "OpenRouter", "Groq", "AI agents", "Agent orchestration"],
-    "frontend": ["React", "Next.js", "Vite", "Tailwind CSS", "Radix UI", "Framer Motion", "TanStack Router", "TanStack Query", "Zustand", "Three.js", "React Three Fiber", "Drei"],
-    "backend": ["FastAPI", "Uvicorn", "Node.js", "Next.js API Routes", "Axum"],
-    "data": ["PostgreSQL", "SQLite", "Supabase", "Prisma", "SQLx", "Redis"],
-    "automation": ["PyQt6", "PyAutoGUI", "Browser automation", "WebSockets"],
-    "infrastructure": ["Docker", "Docker Compose", "S3", "OCI", "OpenTelemetry", "Tempo", "Loki", "GitHub Actions"],
-    "tooling": ["pytest", "Ruff", "Pydantic", "Zod", "Cargo", "Clippy", "just", "cargo-watch"]
+    "languages": [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "Rust",
+      "SQL",
+      "HTML",
+      "CSS"
+    ],
+    "ai": [
+      "Google Gemini",
+      "OpenAI",
+      "OpenRouter",
+      "Groq",
+      "AI agents",
+      "Agent orchestration"
+    ],
+    "frontend": [
+      "React",
+      "Next.js",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "Framer Motion",
+      "TanStack Router",
+      "TanStack Query",
+      "Zustand",
+      "Three.js",
+      "React Three Fiber",
+      "Drei"
+    ],
+    "backend": [
+      "FastAPI",
+      "Uvicorn",
+      "Node.js",
+      "Next.js API Routes",
+      "Axum"
+    ],
+    "data": [
+      "PostgreSQL",
+      "SQLite",
+      "Supabase",
+      "Prisma",
+      "SQLx",
+      "Redis"
+    ],
+    "automation": [
+      "PyQt6",
+      "PyAutoGUI",
+      "Browser automation",
+      "WebSockets"
+    ],
+    "infrastructure": [
+      "Docker",
+      "Docker Compose",
+      "S3",
+      "OCI",
+      "OpenTelemetry",
+      "Tempo",
+      "Loki",
+      "GitHub Actions"
+    ],
+    "tooling": [
+      "pytest",
+      "Ruff",
+      "Pydantic",
+      "Zod",
+      "Cargo",
+      "Clippy",
+      "just",
+      "cargo-watch"
+    ]
   },
   "projects": [
-    {
-      "name": "The-Opero",
-      "repository": "https://github.com/channallikrishnasai/The-Opero",
-      "description": "Open Personal Execution & Response Operator: a local desktop AI operator.",
-      "evidence": "Python, PyQt6, Gemini integration, local execution modules, dashboard, plugins, and WhatsApp bridge.",
-      "asset": "assets/source/the-opero/hero.svg",
-      "featured": true
-    },
-    {
-      "name": "VaultIQ AI",
-      "repository": "https://github.com/channallikrishnasai/vaultiq-ai",
-      "description": "AI-powered personal-finance platform for budgeting, investing, fraud protection, goals, and scenario planning.",
-      "evidence": "Next.js 16, TypeScript, Prisma, Tailwind CSS, and multiple AI providers.",
-      "asset": "assets/source/vaultiq/background.png"
-    },
-    {
-      "name": "LifeOS AI",
-      "repository": "https://github.com/channallikrishnasai/LifeOS-AI",
-      "description": "AI life-management platform for projects, goals, habits, learning, and startup planning.",
-      "evidence": "FastAPI, React, PostgreSQL, Redis, WebSockets, and specialized AI agents."
-    },
-    {
-      "name": "PRISM / Entire Graph",
-      "repository": "https://github.com/channallikrishnasai/PRISM",
-      "description": "A coding-agent plugin for local repository maps, ranked code search, and change-impact navigation.",
-      "evidence": "Go, tree-sitter-based analysis, local indexing, and CLI plugin architecture.",
-      "asset": "assets/source/prism/cover.png"
-    }
+    [
+      "The-Opero",
+      "https://github.com/channallikrishnasai/The-Opero",
+      "Local desktop AI operator",
+      "Python \u00b7 PyQt6 \u00b7 Gemini integration"
+    ],
+    [
+      "VaultIQ AI",
+      "https://github.com/channallikrishnasai/vaultiq-ai",
+      "AI-powered personal finance platform",
+      "Next.js \u00b7 TypeScript \u00b7 Prisma \u00b7 Tailwind CSS"
+    ],
+    [
+      "LifeOS AI",
+      "https://github.com/channallikrishnasai/LifeOS-AI",
+      "AI life-management platform",
+      "FastAPI \u00b7 React \u00b7 PostgreSQL \u00b7 Redis \u00b7 WebSockets"
+    ],
+    [
+      "PRISM / Entire Graph",
+      "https://github.com/channallikrishnasai/PRISM",
+      "Local code intelligence and change-impact navigation",
+      "Go \u00b7 tree-sitter \u00b7 local indexing"
+    ]
   ],
-  "current_build": {"name": "The-Opero", "direction": "Local desktop AI execution and response automation."},
-  "links": {"github": "https://github.com/channallikrishnasai", "linkedin": "https://www.linkedin.com/in/krishna-sai-channalli-4528262b3"},
-  "visual": {"seed": 260922, "theme": "NEXUS"}
+  "links": {
+    "github": "https://github.com/channallikrishnasai",
+    "linkedin": "https://www.linkedin.com/in/krishna-sai-channalli-4528262b3"
+  }
 }

@@ -1,86 +1,81 @@
 #!/usr/bin/env python3
-"""Render Krishna Sai // NEXUS profile visuals with Python's standard library."""
-from __future__ import annotations
-import argparse,json,math,os,sys,urllib.request
-from datetime import datetime,timezone
+"""Generate the GitHub profile's dimensional SVG assets from config/profile.json."""
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]; CFG=json.loads((ROOT/'config/profile.json').read_text()); NEXUS=ROOT/'assets/nexus'
-def e(v): return str(v).replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;')
-def t(x,y,s,z=11,c='#dffaff',a='start',sp=0): return f'<text x="{x}" y="{y}" fill="{c}" font-family="IBM Plex Mono,JetBrains Mono,monospace" font-size="{z}" text-anchor="{a}" letter-spacing="{sp}">{e(s)}</text>'
-def frame(title,w,h,body):
- d='''<defs><radialGradient id="space"><stop stop-color="#10395e"/><stop offset=".43" stop-color="#071625"/><stop offset="1" stop-color="#02040a"/></radialGradient><radialGradient id="core"><stop stop-color="#fff"/><stop offset=".16" stop-color="#b5faff"/><stop offset=".45" stop-color="#39c8eb"/><stop offset="1" stop-color="#152e67" stop-opacity=".08"/></radialGradient><linearGradient id="beam"><stop stop-color="#54edff" stop-opacity="0"/><stop offset=".5" stop-color="#c1fcff"/><stop offset="1" stop-color="#9579ff" stop-opacity="0"/></linearGradient><filter id="bloom" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 .5H6" stroke="#b3f6ff" stroke-opacity=".035"/></pattern><clipPath id="clip"><rect width="100%" height="100%" rx="18"/></clipPath></defs>'''
- return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title desc"><title id="title">{e(title)}</title><desc id="desc">{e(title)}. Animated NEXUS visual with a readable static state.</desc>{d}<g clip-path="url(#clip)"><rect width="100%" height="100%" fill="url(#space)"/><rect width="100%" height="100%" fill="url(#scan)"/>{body}</g></svg>'
-def stars(w,h,n=36): return ''.join(f'<circle cx="{17+(i*73)%(w-34)}" cy="{19+(i*47)%(h-38)}" r="{1+(i%3)*.35:.1f}" fill="#d7fbff" opacity=".{2+i%6}"><animate attributeName="opacity" values=".15;{.45+(i%3)/5:.2f};.15" dur="{5+i%7}s" repeatCount="indefinite"/></circle>' for i in range(n))
-def orbit(x,y,rx,ry,d,dash=''): return f'<ellipse cx="{x}" cy="{y}" rx="{rx}" ry="{ry}" fill="none" stroke="url(#beam)" stroke-width="1.4" stroke-dasharray="{dash}" opacity=".8"><animateTransform attributeName="transform" type="rotate" from="0 {x} {y}" to="360 {x} {y}" dur="{d}s" repeatCount="indefinite"/></ellipse>'
-def core(x,y,r=48): return f'<g filter="url(#bloom)"><circle cx="{x}" cy="{y}" r="{r*1.85}" fill="#287bc9" opacity=".11"><animate attributeName="r" values="{r*1.55};{r*2.05};{r*1.55}" dur="5s" repeatCount="indefinite"/></circle><circle cx="{x}" cy="{y}" r="{r}" fill="url(#core)"/><circle cx="{x}" cy="{y}" r="{r*.52}" fill="#e8ffff" opacity=".72"><animate attributeName="opacity" values=".45;1;.45" dur="3s" repeatCount="indefinite"/></circle></g>'
+import json, math
+
+ROOT = Path(__file__).resolve().parents[1]
+CFG = json.loads((ROOT / "config/profile.json").read_text(encoding="utf-8"))
+OUT = ROOT / "assets/generated"
+
+def esc(value):
+    return str(value).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+def frame(title, w, h, body):
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title desc">
+<title id="title">{esc(title)}</title><desc id="desc">{esc(title)}. Dimensional SVG designed for GitHub README rendering.</desc>
+<defs>
+<linearGradient id="bg"><stop stop-color="#02050a"/><stop offset=".55" stop-color="#071522"/><stop offset="1" stop-color="#02040a"/></linearGradient>
+<linearGradient id="face" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".45" stop-color="#b7f6ff"/><stop offset="1" stop-color="#257da7"/></linearGradient>
+<linearGradient id="edge"><stop stop-color="#52e7ff" stop-opacity="0"/><stop offset=".5" stop-color="#e7ffff"/><stop offset="1" stop-color="#8b7dff" stop-opacity="0"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#bdfbff" stop-opacity=".9"/><stop offset=".35" stop-color="#48dfff" stop-opacity=".4"/><stop offset="1" stop-color="#15527c" stop-opacity="0"/></radialGradient>
+<pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 .5H8" stroke="#d6faff" stroke-opacity=".025"/></pattern>
+</defs><rect width="{w}" height="{h}" rx="20" fill="url(#bg)"/><rect width="{w}" height="{h}" rx="20" fill="url(#scan)"/>{body}</svg>"""
+
+def stars(w,h,n=45):
+    return "".join(f'<circle cx="{20+(i*83)%(w-40)}" cy="{18+(i*47)%(h-36)}" r="{1+(i%3)*.35:.1f}" fill="#d7fbff" opacity="{.16+(i%6)*.06:.2f}"/>' for i in range(n))
+
+def depth_text(text):
+    layers = "".join(f'<text x="600" y="{355+d*5}" fill="#082238" fill-opacity="{.22+d*.018:.2f}" font-family="Inter,Arial,sans-serif" font-size="60" font-weight="800" text-anchor="middle" letter-spacing="5">{esc(text)}</text>' for d in range(10,0,-1))
+    return layers + f'<text x="600" y="355" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="60" font-weight="800" text-anchor="middle" letter-spacing="5">{esc(text)}</text>'
+
 def hero():
- grid=''.join(f'<path d="M{i} 620L600 375" stroke="#5adfff" stroke-opacity=".12"/>' for i in range(0,1201,100))+''.join(f'<path d="M0 {440+i*28}H1200" stroke="#5adfff" stroke-opacity=".09"/>' for i in range(7)); rings=orbit(600,263,205,72,29,'18 8')+orbit(600,263,164,118,19,'4 11')+orbit(600,263,112,154,37,'42 13')
- body=f'{stars(1200,620,58)}<path d="M0 395H1200" stroke="#4be5ff" stroke-opacity=".14"/>{grid}<path d="M410 220L790 306M430 310L770 215" stroke="url(#beam)" opacity=".35"/>{rings}{core(600,263,58)}<polygon points="600,168 651,263 600,358 549,263" fill="none" stroke="#b4f7ff" stroke-opacity=".55"/><polygon points="600,189 630,263 600,337 570,263" fill="#6cecff" fill-opacity=".1" stroke="#7deeff" stroke-opacity=".65"/>{t(54,64,"NEXUS // PERSONAL ENGINEERING UNIVERSE",11,"#78ecff",sp=2)}{t(54,84,"CORE: STABLE    SIGNAL: LOCKED",10,"#8bb3c5")}{t(1000,64,"NODE 01",10,"#78ecff")}{t(1000,84,"AI RUNTIME",10,"#8bb3c5")}<g text-anchor="middle"><text x="600" y="469" fill="#f1feff" font-family="Inter,system-ui,sans-serif" font-size="38" font-weight="700" letter-spacing="3">KRISHNA SAI CHANNALLI</text><text x="600" y="502" fill="#7cefff" font-family="monospace" font-size="14" letter-spacing="3">AI SYSTEMS / AGENT ENGINEERING</text><text x="600" y="552" fill="#a6c5d4" font-family="monospace" font-size="11" letter-spacing="2">BUILDING SYSTEMS THAT SEE · SPEAK · THINK · ACT</text></g><path d="M0 610H1200" stroke="#72eaff" stroke-opacity=".28" stroke-dasharray="10 1200"><animate attributeName="stroke-dashoffset" values="0;-1210" dur="8s" repeatCount="indefinite"/></path>'
- return frame('Krishna Sai Channalli — NEXUS',1200,620,body)
-def boot():
- names=['AI RUNTIME','AGENT ENGINE','VISION ENGINE','VOICE ENGINE','AUTOMATION','SYSTEM CORE']; pos=[(450,108),(594,168),(594,322),(450,382),(306,322),(306,168)]; nodes=''
- for i,(n,(x,y)) in enumerate(zip(names,pos)): nodes+=f'<path d="M{x} {y}L450 245" stroke="url(#beam)" stroke-width="2" opacity="0"><animate attributeName="opacity" values="0;0;1;1" begin="{i*.45}s" dur="3.8s" fill="freeze"/></path><g opacity="0"><circle cx="{x}" cy="{y}" r="26" fill="#061b2a" stroke="#66eaff"/><circle cx="{x}" cy="{y}" r="7" fill="#a8faff" filter="url(#bloom)"/><animate attributeName="opacity" values="0;0;1;1" begin="{i*.45}s" dur="3.8s" fill="freeze"/></g>{t(x,y+48,n,10,"#bcefff","middle")}'
- return frame('NEXUS system activation',900,470,f'{stars(900,470,35)}{t(46,52,"SYSTEM ACTIVATION // SEQUENCE 01",12,"#79edff",sp=2)}<circle cx="450" cy="245" r="163" fill="none" stroke="#4ee2ff" stroke-opacity=".14"/>{orbit(450,245,150,102,24,"12 10")}{nodes}{core(450,245,51)}{t(450,251,"NEXUS",16,"#06121d","middle",2)}{t(450,435,"NEXUS SYSTEM // OPERATIONAL",14,"#94f7c5","middle",2)}')
-def identity(): return frame('Krishna Sai Channalli digital identity',900,430,f'{stars(900,430,34)}<path d="M60 340L420 145 840 340" fill="none" stroke="#5ee8ff" stroke-opacity=".17"/><g transform="translate(270 218)">{orbit(0,0,146,64,23,"15 9")}{orbit(0,0,101,134,31,"4 11")}<circle r="116" fill="none" stroke="#75eaff" stroke-opacity=".3"/><path d="M-44 58c3-58 85-58 88 0M-35-22a35 35 0 1 1 70 0 35 35 0 0 1-70 0" fill="none" stroke="#b4faff" stroke-width="3"/><path d="M-128 0H128" stroke="#6deaff" stroke-opacity=".6"/></g>{t(522,108,"IDENTITY CHAMBER",12,"#7cefff",sp=3)}{t(522,158,"KRISHNA SAI",27,"#f1feff")}{t(522,193,"CHANNALLI",27,"#f1feff")}{t(522,241,"COMPUTER SCIENCE ENGINEER",13,"#b4d3df",sp=2)}{t(522,284,"AI · AGENTS · VISION",12,"#7cefff",sp=2)}{t(522,310,"AUTOMATION · SYSTEMS",12,"#7cefff",sp=2)}{t(522,358,"ABSTRACT SIGNAL / PORTRAIT NOT SUPPLIED",10,"#7f9aa9")}')
-def constellation():
- nodes=[('AI',450,190,25,.95),('AGENTS',590,238,22,.86),('VISION',345,277,21,.75),('VOICE',535,370,19,.62),('AUTOMATION',268,382,18,.56),('PYTHON',648,120,17,.48),('SYSTEMS',225,135,15,.38),('WEB',695,315,14,.33),('DATABASES',174,300,13,.27)]
- paths=''.join(f'<path d="M450 272L{x} {y}" stroke="url(#beam)" stroke-opacity="{op}" stroke-width="1.2" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{7+i}s" repeatCount="indefinite"/></path>' for i,(_,x,y,_,op) in enumerate(nodes)); dots=''.join(f'<g opacity="{op}"><circle cx="{x}" cy="{y}" r="{r}" fill="#061b2b" stroke="#78edff"/><circle cx="{x}" cy="{y}" r="4" fill="#b9fbff" filter="url(#bloom)"/>{t(x,y+r+17,n,10,"#dffaff","middle")}</g>' for n,x,y,r,op in nodes)
- return frame('NEXUS neural constellation',900,520,f'{stars(900,520,52)}{t(46,52,"NEXUS NEURAL CONSTELLATION",12,"#7cefff",sp=3)}<ellipse cx="450" cy="272" rx="305" ry="135" fill="none" stroke="#5ce9ff" stroke-opacity=".18" transform="rotate(-10 450 272)"/>{orbit(450,272,238,105,28,"15 11")}{orbit(450,272,168,190,39,"4 13")}{paths}{core(450,272,47)}{t(450,278,"CORE",13,"#06131d","middle",2)}{dots}{t(46,484,"INNER: AI / AGENTS / VISION     MIDDLE: VOICE / AUTOMATION / PYTHON     OUTER: SYSTEMS / WEB / DATABASES",9,"#87a7b7")}')
-def missions():
- projects=CFG['projects']; modules=''
- for i,p in enumerate(projects):
-  x,y=[(180,230),(360,130),(540,130),(720,230)][i]; r=[32,40,40,32][i]; modules+=f'<a href="{e(p["repository"])}"><g><circle cx="{x}" cy="{y}" r="{r}" fill="#071c2e" stroke="#72ecff" stroke-width="1.5"/><circle cx="{x}" cy="{y}" r="{r*.55}" fill="#5deaff" opacity=".2" filter="url(#bloom)"/>{orbit(x,y,r+18,int((r+18)*.48),17+i*7,"9 7")}{t(x,y+5,p["name"].upper(),9,"#e9feff","middle")}</g></a>'
- return frame('Project constellation',900,390,f'{stars(900,390,38)}{t(48,54,"PROJECT CONSTELLATION // PUBLIC SYSTEMS",12,"#7cefff",sp=3)}<path d="M90 322Q450 52 810 322" fill="none" stroke="url(#beam)" stroke-opacity=".35" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" values="0;-68" dur="11s" repeatCount="indefinite"/></path>{modules}{t(450,360,"THE-OPERO · VAULTIQ AI · LIFEOS AI · PRISM",11,"#dffaff","middle",2)}')
+    return frame("Krishna Sai Channalli — 3D profile identity",1200,500,
+        stars(1200,500)+
+        '<path d="M70 110H1130M140 400H1060" stroke="#55e7ff" stroke-opacity=".16"/>'+
+        '<path d="M220 430L600 120L980 430M330 430L600 205L870 430" fill="none" stroke="#55e7ff" stroke-opacity=".08"/>'+
+        '<ellipse cx="600" cy="230" rx="280" ry="105" fill="none" stroke="url(#edge)" stroke-width="1.5" stroke-dasharray="18 11"/>'+
+        '<ellipse cx="600" cy="230" rx="190" ry="145" fill="none" stroke="#67eaff" stroke-opacity=".18" transform="rotate(-25 600 230)"/>'+
+        '<circle cx="600" cy="230" r="135" fill="url(#glow)" opacity=".42"/><circle cx="600" cy="230" r="74" fill="none" stroke="#9df6ff" stroke-opacity=".42"/><circle cx="600" cy="230" r="48" fill="#061a29" stroke="#9df6ff" stroke-opacity=".72"/><circle cx="600" cy="230" r="13" fill="#dffeff"/>'+
+        '<text x="62" y="58" fill="#7feeff" font-family="monospace" font-size="12" letter-spacing="3">PERSONAL ENGINEERING PROFILE</text>'+
+        '<text x="1138" y="58" fill="#7896a6" font-family="monospace" font-size="10" text-anchor="end" letter-spacing="2">DEPTH / 3D TYPOGRAPHY</text>'+
+        depth_text(CFG["identity"]["name"].upper())+
+        '<text x="600" y="397" fill="#d9faff" font-family="Inter,Arial,sans-serif" font-size="19" text-anchor="middle" letter-spacing="4">COMPUTER SCIENCE ENGINEER</text>'+
+        '<text x="600" y="431" fill="#76eaff" font-family="monospace" font-size="13" text-anchor="middle" letter-spacing="3">AI SYSTEMS · AGENTS · AUTOMATION</text>')
+
+def technology():
+    groups=list(CFG["technologies"].items())
+    positions=[(170,160),(410,105),(790,105),(1030,160),(1020,390),(790,455),(410,455),(170,390)]
+    colors=["#56eaff","#a78bfa","#60a5fa","#72e8c1","#6ee7b7","#f6b45f","#73d7ff","#b8c4d1"]
+    body=stars(1200,540,55)+'<text x="55" y="50" fill="#7feeff" font-family="monospace" font-size="12" letter-spacing="3">TECHNOLOGY FIELD</text><text x="55" y="76" fill="#91afbd" font-family="monospace" font-size="10">FULL STACK / AI / AUTOMATION / INFRASTRUCTURE</text>'
+    body+='<ellipse cx="600" cy="280" rx="230" ry="145" fill="none" stroke="#5ee9ff" stroke-opacity=".2" stroke-dasharray="15 10"/><ellipse cx="600" cy="280" rx="150" ry="210" fill="none" stroke="#5ee9ff" stroke-opacity=".12" transform="rotate(25 600 280)"/><circle cx="600" cy="280" r="105" fill="url(#glow)" opacity=".2"/><circle cx="600" cy="280" r="52" fill="#061a2a" stroke="#86efff"/><text x="600" y="276" fill="#eaffff" font-family="monospace" font-size="12" text-anchor="middle">ENGINEERING</text><text x="600" y="296" fill="#77eaff" font-family="monospace" font-size="9" text-anchor="middle">STACK</text>'
+    for (key,items),(x,y),c in zip(groups,positions,colors):
+        body+=f'<path d="M600 280Q{(600+x)//2} {(280+y)//2-35} {x} {y}" fill="none" stroke="{c}" stroke-opacity=".4" stroke-dasharray="5 11"/><circle cx="{x}" cy="{y}" r="31" fill="#071827" stroke="{c}" stroke-opacity=".85"/><text x="{x}" y="{y+4}" fill="url(#face)" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle">{esc(key.upper())}</text>'
+        for j,item in enumerate(items[:4]):
+            body+=f'<text x="{x}" y="{y+54+j*15}" fill="#c8e4ed" font-family="monospace" font-size="9" text-anchor="middle">{esc(item)}</text>'
+    return frame("Dimensional technology field",1200,540,body)
+
+def project_constellation():
+    body=stars(1000,430,40)+'<text x="50" y="52" fill="#7feeff" font-family="monospace" font-size="12" letter-spacing="3">PROJECT CONSTELLATION</text><path d="M110 335Q500 65 890 335" fill="none" stroke="url(#edge)" stroke-opacity=".5" stroke-dasharray="6 12"/><ellipse cx="500" cy="220" rx="300" ry="125" fill="none" stroke="#5ce9ff" stroke-opacity=".16"/><circle cx="500" cy="220" r="58" fill="url(#glow)" opacity=".45"/><circle cx="500" cy="220" r="36" fill="#061b2b" stroke="#8af2ff"/><text x="500" y="216" fill="#eaffff" font-family="monospace" font-size="10" text-anchor="middle">CURRENT</text><text x="500" y="232" fill="#7cefff" font-family="monospace" font-size="9" text-anchor="middle">BUILD</text>'
+    positions=[(190,250),(380,130),(620,130),(810,250)]
+    for (name,url,desc,stack),(x,y) in zip(CFG["projects"],positions):
+        body+=f'<a href="{esc(url)}"><circle cx="{x}" cy="{y}" r="38" fill="#071a2b" stroke="#6eeaff"/><circle cx="{x}" cy="{y}" r="16" fill="#68eaff" opacity=".25"/><text x="{x}" y="{y+4}" fill="#eaffff" font-family="monospace" font-size="8" text-anchor="middle">{esc(name.upper()[:14])}</text><text x="{x}" y="{y+57}" fill="#a8cbd7" font-family="monospace" font-size="8" text-anchor="middle">{esc(desc[:31])}</text></a>'
+    return frame("Project constellation",1000,430,body)
+
 def opero():
- labels=['SPEAK','UNDERSTAND','INVESTIGATE','DECIDE','ACT','VERIFY','REPORT']; nodes=''.join(f'<g><circle cx="{450+int(172*math.cos(-math.pi/2+i*2*math.pi/7))}" cy="{238+int(104*math.sin(-math.pi/2+i*2*math.pi/7))}" r="18" fill="#061a2c" stroke="#67eaff"/>{t(450+int(172*math.cos(-math.pi/2+i*2*math.pi/7)),243+int(104*math.sin(-math.pi/2+i*2*math.pi/7)),n,8,"#dffaff","middle")}</g>' for i,n in enumerate(labels))
- return frame('OPERO operations core',900,475,f'{stars(900,475,35)}{t(48,54,"AUTONOMOUS OPERATOR CORE // OPERO",12,"#7cefff",sp=2)}{orbit(450,238,172,104,18,"18 9")}{orbit(450,238,218,142,33,"4 13")}{nodes}{core(450,238,53)}{t(450,234,"OPERO",16,"#06131d","middle",2)}{t(450,258,"OPS CORE",9,"#06131d","middle")}{t(450,426,"OPERATIONS FOUNDATION: ORDERS · INCIDENTS · INVENTORY · TASKS · AUDIT ACTIVITY",10,"#91b0be","middle")}')
-def terminal():
- lines=[('$ whoami','Krishna Sai Channalli'),('$ focus','AI Systems / Agent Engineering'),('$ build','Intelligent experimental systems'),('$ status','ONLINE')]; out=''.join(t(92,112+i*55,a,13,'#80efff')+t(92,136+i*55,b,12,'#d9f8ff') for i,(a,b) in enumerate(lines))
- return frame('Krishna Sai Channalli terminal',900,390,f'{stars(900,390,24)}<path d="M62 72H838V330H62z" fill="#030b14" fill-opacity=".88" stroke="#5ce9ff" stroke-opacity=".55"/>{t(90,98,"KRISHNA.SAI // TERMINAL",12,"#7cefff",sp=2)}{out}<rect x="92" y="304" width="8" height="14" fill="#8ff8ff"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect>')
-def philosophy():
- steps=['BUILD','EXPERIMENT','MEASURE','AUTOMATE','VERIFY','SHIP']; s=''.join(f'<g><circle cx="{120+i*132}" cy="180" r="27" fill="#071a2b" stroke="#65eaff"/>{t(120+i*132,185,v,10,"#dffaff","middle")}</g>' for i,v in enumerate(steps))
- return frame('Engineering philosophy',900,300,f'{stars(900,300,24)}{t(46,52,"ENGINEERING PHILOSOPHY // CONTINUOUS SIGNAL",12,"#7cefff",sp=2)}<path d="M120 180H780" stroke="url(#beam)" stroke-width="3" stroke-dasharray="20 12"><animate attributeName="stroke-dashoffset" values="0;-128" dur="8s" repeatCount="indefinite"/></path>{s}{t(450,254,"A DELIBERATE LOOP: MAKE, TEST, OBSERVE, AND IMPROVE.",11,"#91b0be","middle",2)}')
-def activity(data):
- if not data: return frame('GitHub signal field',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB SIGNAL FIELD",12,"#7cefff",sp=2)}{core(450,160,38)}{orbit(450,160,210,70,25,"10 13")}')
- vals=[('PUBLIC REPOSITORIES',data.get('public_repos',0)),('FOLLOWERS',data.get('followers',0)),('PUBLIC GISTS',data.get('public_gists',0))]; f=''.join(f'<circle cx="{260+i*190}" cy="170" r="46" fill="#061a2c" stroke="#63eaff"/>{t(260+i*190,166,v,22,"#f0feff","middle")}{t(260+i*190,200,k,9,"#91b0be","middle")}' for i,(k,v) in enumerate(vals)); return frame('Verified GitHub activity signal field',900,310,f'{stars(900,310,35)}{t(48,54,"GITHUB ACTIVITY // VERIFIED SIGNAL FIELD",12,"#7cefff",sp=2)}{f}{t(450,278,"REFRESHED "+datetime.now(timezone.utc).strftime("%Y-%m-%d UTC"),10,"#91b0be","middle")}')
-def contributions(data):
- weeks=(data or {}).get('contributions',[])
- if not weeks: return frame('Contribution terrain',900,250,f'{stars(900,250,25)}{t(48,54,"CONTRIBUTION TERRAIN",12,"#7cefff",sp=2)}<path d="M100 195Q260 135 450 190T800 160" fill="none" stroke="url(#beam)" stroke-width="2" opacity=".5"/><path d="M100 205H800" stroke="#5eeaff" stroke-opacity=".22"/>')
- mx=max((d.get('contributionCount',0) for w in weeks for d in w.get('contributionDays',[])),default=1) or 1; cells=[]
- for x,w in enumerate(weeks[-48:]):
-  for y,d in enumerate(w.get('contributionDays',[])):
-   c=d.get('contributionCount',0); h=5+20*c/mx; cells.append(f'<rect x="{138+x*13}" y="{197-y*12-h}" width="8" height="{h:.1f}" fill="#5eeaff" opacity="{.12+.88*c/mx:.2f}"><title>{e(d.get("date"))}: {c} contributions</title></rect>')
- return frame('Real GitHub contribution signal field',900,250,f'{t(48,54,"CONTRIBUTION SIGNAL // VERIFIED LAST 48 WEEKS",12,"#7cefff",sp=2)}<path d="M110 200H790" stroke="#5eeaff" stroke-opacity=".3"/>{"".join(cells)}{t(450,230,"COLUMN HEIGHT AND INTENSITY REPRESENT ACTUAL DAILY CONTRIBUTIONS",9,"#91b0be","middle")}')
-def connection():
- gh,li=CFG['links']['github'],CFG['links']['linkedin']; return frame('Connection gateway',900,380,f'{stars(900,380,36)}{t(48,54,"CONNECTION GATEWAY",12,"#7cefff",sp=3)}{orbit(450,194,160,130,22,"18 12")}{orbit(450,194,123,156,31,"4 10")}{core(450,194,50)}<circle cx="450" cy="194" r="85" fill="none" stroke="#95f6ff" stroke-opacity=".55"/>{t(450,200,"CONNECT",15,"#06131d","middle",2)}<a href="{e(gh)}">{t(225,320,"GITHUB ↗",14,"#dffaff","middle",2)}</a><a href="{e(li)}">{t(675,320,"LINKEDIN ↗",14,"#dffaff","middle",2)}</a>')
-def github_data(token):
- try:
-  h={'Accept':'application/vnd.github+json','User-Agent':'krishna-sai-profile'}
-  if token:h['Authorization']=f'Bearer {token}'
-  q=urllib.request.Request(f'https://api.github.com/users/{CFG["identity"]["username"]}',headers=h)
-  with urllib.request.urlopen(q,timeout=20) as r:data=json.load(r)
-  q=urllib.request.Request(f'https://api.github.com/users/{CFG["identity"]["username"]}/repos?per_page=100&sort=updated',headers=h)
-  with urllib.request.urlopen(q,timeout=20) as r:data['repos']=json.load(r)
-  if not token:return data
-  payload={'query':'query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}','variables':{'login':CFG['identity']['username']}}; q=urllib.request.Request('https://api.github.com/graphql',data=json.dumps(payload).encode(),headers={**h,'Content-Type':'application/json'})
-  with urllib.request.urlopen(q,timeout=20) as r:data['contributions']=json.load(r).get('data',{}).get('user',{}).get('contributionsCollection',{}).get('contributionCalendar',{}).get('weeks',[])
-  return data
- except Exception as err: print(f'warning: GitHub data unavailable: {err}',file=sys.stderr);return None
-def technology_field():
- groups=list(CFG['technologies'].items()); positions=[(250,180),(600,115),(960,180),(1030,460),(960,735),(600,810),(250,735),(170,460)]; body=stars(1200,920,52)+t(52,52,'NEXUS NEURAL TECHNOLOGY FIELD',14,'#7cefff',sp=3)+orbit(600,465,220,150,31,'18 10')+orbit(600,465,320,245,47,'5 12')+core(600,465,48)
- for i,(key,items) in enumerate(groups):
-  x,y=positions[i]; accent=['#56eaff','#a78bfa','#60a5fa','#72e8c1','#6ee7b7','#f6b45f','#73d7ff','#b8c4d1'][i]; body+=f'<path d="M600 465Q{(600+x)//2} {(465+y)//2-50} {x} {y}" fill="none" stroke="{accent}" stroke-opacity=".35" stroke-dasharray="5 11"><animate attributeName="stroke-dashoffset" values="0;-64" dur="{6+i*2.1}s" repeatCount="indefinite"/></path><circle cx="{x}" cy="{y}" r="29" fill="#071827" stroke="{accent}" stroke-opacity=".8"><animate attributeName="r" values="27;31;27" dur="{2.4+i*.7}s" repeatCount="indefinite"/></circle>{t(x,y+4,key.upper(),9,accent,'middle',1)}'
-  lines=[' · '.join(items[j:j+3]) for j in range(0,len(items),3)]
-  for line_index,line in enumerate(lines): body+=t(x,y+48+line_index*15,line,10,'#c8e4ed','middle')
- body+=t(600,471,'NEXUS',14,'#06131d','middle',2)+t(600,497,'SYSTEM CORE',9,'#06131d','middle')
- return frame('NEXUS neural technology field',1200,920,body)
-def lifeos_system():
- names=['CAREER','LIFE','PLANNER','SKILL','STUDY','STARTUP','FUTURE']; points=[]
- for i,name in enumerate(names): points.append((name,450+int(245*math.cos(-math.pi/2+i*2*math.pi/7)),250+int(138*math.sin(-math.pi/2+i*2*math.pi/7))))
- paths=''.join(f'<path d="M450 250Q{(450+x)//2} {(250+y)//2-35} {x} {y}" fill="none" stroke="#71eaff" stroke-opacity=".42" stroke-dasharray="4 9"><animate attributeName="stroke-dashoffset" values="0;-52" dur="{5+i*1.4}s" repeatCount="indefinite"/></path>' for i,(_,x,y) in enumerate(points)); nodes=''.join(f'<g><circle cx="{x}" cy="{y}" r="29" fill="#092033" stroke="#80ecff"/><circle cx="{x}" cy="{y}" r="7" fill="#98f7ff" filter="url(#bloom)"/><text x="{x}" y="{y+4}" fill="#eaffff" font-family="monospace" font-size="9" text-anchor="middle">{n}</text></g>' for n,x,y in points)
- return frame('LifeOS system orbit',900,520,f'{stars(900,520,42)}{t(48,52,"LIFEOS SYSTEM ORBIT",13,"#7cefff",sp=3)}<path d="M80 440Q450 70 820 440" fill="none" stroke="#4be5ff" stroke-opacity=".13"/>{orbit(450,250,245,138,26,"17 10")}{orbit(450,250,165,205,39,"5 13")}{paths}{core(450,250,52)}{t(450,254,"LIFEOS",13,"#06131d","middle",2)}{nodes}{t(450,486,"VERIFIED AI WORKSPACE DOMAINS",10,"#a8c8d3","middle",2)}')
+    body=stars(1000,430,35)+'<text x="50" y="52" fill="#7feeff" font-family="monospace" font-size="12" letter-spacing="3">THE-OPERO / EXECUTION LOOP</text><ellipse cx="500" cy="220" rx="300" ry="125" fill="none" stroke="url(#edge)" stroke-width="1.5" stroke-dasharray="16 10"/><circle cx="500" cy="220" r="58" fill="url(#glow)" opacity=".4"/><circle cx="500" cy="220" r="37" fill="#061b2b" stroke="#8af2ff"/><text x="500" y="217" fill="#eaffff" font-family="monospace" font-size="11" text-anchor="middle">OPERO</text><text x="500" y="233" fill="#7cefff" font-family="monospace" font-size="8" text-anchor="middle">CORE</text>'
+    steps=["SPEAK","UNDERSTAND","INVESTIGATE","DECIDE","ACT","VERIFY","REPORT"]
+    for i,step in enumerate(steps):
+        a=-math.pi/2+i*2*math.pi/len(steps); x=500+270*math.cos(a); y=220+105*math.sin(a)
+        body+=f'<circle cx="{x:.0f}" cy="{y:.0f}" r="27" fill="#071a2b" stroke="#67eaff"/><text x="{x:.0f}" y="{y+4:.0f}" fill="#eaffff" font-family="monospace" font-size="8" text-anchor="middle">{step}</text>'
+    body+='<text x="500" y="385" fill="#91b0be" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="1.5">VOICE / TOOLS / APPROVAL / EXECUTION / VERIFICATION</text>'
+    return frame("The-Opero execution loop",1000,430,body)
+
 def main():
- p=argparse.ArgumentParser();p.add_argument('--token',default=os.getenv('GITHUB_TOKEN'));p.parse_args(); from technical_interface import render_assets; assets=render_assets(CFG)
- for n,v in assets.items(): (NEXUS/n).parent.mkdir(parents=True,exist_ok=True);(NEXUS/n).write_text(v,encoding='utf-8')
- print(f'Generated {len(assets)} NEXUS SVG assets.')
-if __name__=='__main__':main()
+    OUT.mkdir(parents=True,exist_ok=True)
+    assets={"hero-depth.svg":hero(),"technology-field.svg":technology(),"project-constellation.svg":project_constellation(),"opero-loop.svg":opero()}
+    for name,data in assets.items():
+        (OUT/name).write_text(data,encoding="utf-8")
+    print(f"Generated {len(assets)} SVG assets.")
+
+if __name__=="__main__":
+    main()
